@@ -67,7 +67,7 @@ export const Footer = () => {
         <div className={styles.footerWrapper__bottom}>
           <p>2023</p>
           <p>The Rolling Scopes School</p>
-          <p>Gentleman</p>
+          <p><a href="https://github.com/ThunderFlight">Gentleman</a></p>
         </div>
       </div>
     </footer>

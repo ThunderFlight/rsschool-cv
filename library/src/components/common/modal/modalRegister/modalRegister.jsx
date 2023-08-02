@@ -12,7 +12,6 @@ export const ModalRegister = () => {
     submitUser,
     registerUserObj,
   } = useAppContext();
-  console.log(key);
 
   // useEffect(() => {
   //   const profileText = JSON.parse(localStorage.getItem("loginUserProfile"));
@@ -55,13 +54,13 @@ export const ModalRegister = () => {
           type="text"
           id="fname"
           name="firstName"
-          // onChange={(e) => registerUserObj(e)}
-          // value={key.userForm.firstName}
-          // className={classNames(
-          //   key.validForm.validFirstName
-          //     ? styles.validFirstName
-          //     : styles.invalidFirstName
-          // )}
+          onChange={(e) => registerUserObj(e)}
+          value={key.userForm.firstName}
+          className={classNames(
+            key.validForm.validFirstName
+              ? styles.validFirstName
+              : styles.invalidFirstName
+          )}
           required
         />
         <label htmlFor="lname">Last name</label>

@@ -11,6 +11,7 @@
   text-align: center;
   text-emphasis: none;
   border-radius: 2px;
+  transition: 0.5s;
   &:hover {
     background-color: $GOLD;
     border-color: $GOLD;

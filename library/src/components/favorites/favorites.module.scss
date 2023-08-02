@@ -27,11 +27,12 @@
       padding-top: 35px;
     }
     &__pagination {
-      @include flex-row(flex-start, center);
+      @include flex-row(flex-start,center);
     }
     &__pagination label {
       @include text(20px, 400, $BLACK);
       cursor: pointer;
+      font-family: Inter;transition: all 0.2s;
     }
 
     &__pagination input[type="radio"]:first-child {
@@ -48,14 +49,14 @@
       appearance: none;
       outline: none;
       padding: 0px;
-      margin-right: 20px;
-      margin-left: 115px;
+      margin-right: 22px;
+      margin-left: 90px;transition: all 0.2s;
     }
 
     &__pagination input[type="radio"]::before {
       content: "";
       position: absolute;
-      top: 60%;
+      top: 50%;
       left: 50%;
       width: 15px;
       height: 15px;
@@ -68,7 +69,7 @@
     &__pagination input[type="radio"]:checked::after {
       content: "";
       position: absolute;
-      top: 60%;
+      top: 50%;
       left: 50%;
       width: 10px;
       height: 10px;
@@ -79,6 +80,7 @@
     }
     &__pagination input[type="radio"]:checked + label {
       font-weight: bold;
+
     }
   }
 

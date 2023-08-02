@@ -44,6 +44,12 @@
       margin-right: 10px;
       border-radius: 100%;
       display: block;
+      transition: all 0.5s;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    }
+    label:hover{
+      background-color:  $GOLD;
+      
     }
     input[type="radio"]:checked + label {
       background-color: $GOLD;

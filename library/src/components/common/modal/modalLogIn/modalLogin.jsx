@@ -7,9 +7,8 @@ import styles from "./modalLogin.module.scss";
 
 export const ModalLogin = () => {
   const [loginUserProfile, setLoginUserProfile] = useState("");
-
   const { key, setKey, openModalRegister, closeLogIn } = useAppContext();
-  console.log(key.openLogIn);
+
 
   const loginForm = (e) => {
     e.preventDefault();

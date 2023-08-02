@@ -250,11 +250,11 @@
       & li a:hover {
         color: $GOLD;
       }
-      & li {
+      li {
         margin-right: 30px;
         position: relative;
       }
-      & li:last-child {
+      li:nth-child(5) {
         margin-right: 40px;
       }
       & li a {

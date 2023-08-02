@@ -64,7 +64,7 @@
   &__line {
     width: 100%;
     border: 1px solid $WHITE;
-    margin-bottom: 39px;
+    margin-bottom: 30px;
   }
   &__bottom {
     @include flex-row(space-between, center);
@@ -74,6 +74,12 @@
       font-family: Inter;
       line-height: 20px;
       letter-spacing: 2px;
+    }
+    p:nth-child(1){
+      margin-right: 70px;
+    }
+    p a{
+      color: $WHITE;
     }
     p:last-child {
       line-height: 40px;
