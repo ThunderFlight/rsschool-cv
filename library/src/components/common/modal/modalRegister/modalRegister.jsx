@@ -6,7 +6,6 @@ import styles from "./modalRegister.module.scss";
 export const ModalRegister = () => {
   const {
     key,
-    setKey,
     closeRegister,
     openModalLogIn,
     submitUser,
@@ -37,7 +36,7 @@ export const ModalRegister = () => {
   //   localStorage.setItem("registered", userRegisetered);
   //   localStorage.setItem("user", JSON.stringify(users));
   // }, [users, profileReged, userRegisetered, loginUserProfile]);
-  console.log(key.userForm);
+
   return (
     <form
       className={
@@ -83,7 +82,7 @@ export const ModalRegister = () => {
           id="emailReg"
           onChange={(e) => registerUserObj(e)}
           name="email"
-          pattern="[A-z,0-9]+@[a-z]+\.[a-z]+"
+          // pattern="[A-z,0-9]+@[a-z]+\.[a-z]+"
           value={key.userForm.email}
           className={classNames(
             key.validForm.validEmail

@@ -2,7 +2,7 @@
 .aboutCarousel {
   @include flex-col(center, center);
   @include pX;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   &__aboutLibrary {
     color: $BLACK;
     text-align: center;

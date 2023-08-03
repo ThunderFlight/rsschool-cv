@@ -6,25 +6,9 @@ import { CustomButton } from "../../customButton/customButton";
 import styles from "./modalLogin.module.scss";
 
 export const ModalLogin = () => {
-  const [loginUserProfile, setLoginUserProfile] = useState("");
-  const { key, setKey, openModalRegister, closeLogIn } = useAppContext();
+  const { key, setKey, openModalRegister, closeLogIn,loginForm } = useAppContext();
 
 
-  const loginForm = (e) => {
-    e.preventDefault();
-
-    for (let i in users) {
-      if (
-        users[i].email === emailLoginForm &&
-        users[i].password === passwordLoginForm
-      ) {
-        setLoginUserProfile(users[i]);
-        setopenLogIn(false);
-        setProfileReged(true);
-        setUserRegistered(true);
-      }
-    }
-  };
 
   return (
     <form
@@ -33,7 +17,7 @@ export const ModalLogin = () => {
           ? classNames(styles.modalLogInWrap, styles.regandlogform)
           : styles.modalLogInWrapClose
       }
-      onSubmit={loginForm}>
+      onSubmit={(e)=>loginForm(e)}>
       <h3>LOGIN</h3>
       <img src={close} onClick={() => closeLogIn()} />
       <div className={styles.regandlogform__form}>

@@ -1,29 +1,27 @@
-import { useState } from "react";
-import styles from "./ModalProfileAuth.module.scss";
+
+import styles from "./modalProfileAuth.module.scss";
+import { useAppContext } from "../../../../contexts/useAppContext";
+import classNames from "classnames";
 export const ModalProfileAuth = () => {
-  const [openProfileBool, setOpenProfileBool] = useState(false);
-  const openProfile = () => {
-    setOpenProfileBool(true);
-    setProfileReged(false);
-  };
-  const logOut = () => {
-    setOpen(true);
-    setProfileReged(false);
-    setUserRegistered(false);
-  };
+  const {key,openProfile,logOut}=useAppContext()
+ 
+  // const logOut = () => {
+  //   setOpen(true);
+  //   setProfileReged(false);
+  //   setUserRegistered(false);
+  // };
   return (
-    <div className={styles.ModalProfileAuth}>
+    
       <div
         className={classNames(
-          profileReged
+          key.profileReged
             ? styles.modalChooseRegisterOpened
             : styles.modalChooseClosed
         )}>
         <h3>Profile</h3>
         <div></div>
-        <p onClick={openProfile}>My Profile</p>
-        <p onClick={logOut}>Log Out</p>
+        <p onClick={()=>openProfile()}>My Profile</p>
+        <p onClick={()=>logOut()}>Log Out</p>
       </div>
-    </div>
   );
 };

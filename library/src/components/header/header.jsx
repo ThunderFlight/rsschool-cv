@@ -8,6 +8,8 @@ import { ModalLogin } from "../common/modal/modalLogIn/modalLogin";
 import { ModalProfileNoAuth } from "../common/modal/modalProfileNoAuth/modalProfileNoAuth";
 import { ModalRegister } from "../common/modal/modalRegister/modalRegister";
 import styles from "./header.module.scss";
+import { ModalProfileAuth } from "../common/modal/modalProfileAuth/modalProfileAuth";
+import { ModalProfile } from "../common/modal/modalProfile/modalProfile";
 
 export const Header = ({ headerWith }) => {
   const [openBurger, setOpenBurger] = useState(false);
@@ -49,20 +51,20 @@ export const Header = ({ headerWith }) => {
           </ul>
           {key.userRegisetered ? (
             <div
-              onClick={key.userRegisetered ? openModalReg : openModalNoReg}
+              onClick={()=>openModalReg() }
               className={styles.headerWrapper__avatar}>
-              {loginUserProfile.firstName !== undefined
-                ? loginUserProfile.firstName.slice(0, 1).toUpperCase()
-                : "undefined"}
-              {loginUserProfile.lastName !== undefined
-                ? loginUserProfile.lastName.slice(0, 1).toUpperCase()
-                : "undefined"}
+              {key.loginUserProfile.firstName !== undefined
+                ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase()
+                : "u"}
+              {key.loginUserProfile.lastName !== undefined
+                ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase()
+                : "u"}
             </div>
           ) : (
             <img
               src={profileIcon}
               onClick={() =>
-                key.userRegisetered ? openModalReg() : openModalNoReg()
+                openModalNoReg()
               }
               className={styles.noAvatar}
             />
@@ -111,6 +113,8 @@ export const Header = ({ headerWith }) => {
           <ModalProfileNoAuth />
           <ModalLogin />
           <ModalRegister />
+          <ModalProfileAuth/>
+          <ModalProfile/>
         </nav>
       </div>
     </header>

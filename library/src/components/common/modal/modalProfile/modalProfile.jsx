@@ -1,30 +1,32 @@
 import { useState } from "react";
 import styles from "./modalProfile.module.scss";
+import { useAppContext } from "../../../../contexts/useAppContext";
+import classNames from "classnames";
+import close from "../../../../../public/images/close_btn.svg";
 export const ModalProfile = () => {
-  const [openProfileBool, setOpenProfileBool] = useState(false);
-  const closeProfile = () => {
-    setOpenProfileBool(false);
-  };
+  // const [openProfileBool, setOpenProfileBool] = useState(false);
+  const {key,closeProfile}=useAppContext()
+  
   return (
     <div
       className={classNames(
-        openProfileBool ? styles.myProfile : styles.myProfileClose
+        key.openProfileBool ? styles.myProfile : styles.myProfileClose
       )}>
       <div className={styles.myProfile__left}>
         <div className={styles.profileAvatar}>
-          {loginUserProfile.firstName !== undefined
-            ? loginUserProfile.firstName.slice(0, 1).toUpperCase()
+          {key.loginUserProfile.firstName !== undefined
+            ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase()
             : "undefined"}
-          {loginUserProfile.lastName !== undefined
-            ? loginUserProfile.lastName.slice(0, 1).toUpperCase()
+          {key.loginUserProfile.lastName !== undefined
+            ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase()
             : "undefined"}
         </div>
         <div className={styles.profileName}>
-          {loginUserProfile !== undefined
-            ? loginUserProfile.firstName
+          {key.loginUserProfile !== undefined
+            ? key.loginUserProfile.firstName
             : "undefined"}
-          {loginUserProfile !== undefined
-            ? loginUserProfile.lastName
+          {key.loginUserProfile !== undefined
+            ? key.loginUserProfile.lastName
             : "undefined"}
         </div>
       </div>
@@ -37,13 +39,13 @@ export const ModalProfile = () => {
         <p>
           Card number
           <a>
-            {loginUserProfile !== undefined
-              ? loginUserProfile.cardNumber
-              : console.log(loginUserProfile)}
+            {key.loginUserProfile !== undefined
+              ? key.loginUserProfile.cardNumber
+              : console.log(key.loginUserProfile)}
           </a>
         </p>
       </div>
-      <img src={close} onClick={closeProfile} />
+      <img src={close} onClick={()=>closeProfile()} />
     </div>
   );
 };
