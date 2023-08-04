@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { uid } from "uid";
 import { Context } from "./context";
 export const Provider = function ({ children }) {
@@ -9,7 +9,9 @@ export const Provider = function ({ children }) {
     userRegisetered: false,
     profileReged: false,
     openProfileBool:false,
+    profileLofinReg:false,
     loginUserProfile:"",
+    registerUserProfile:"",
     emailLoginForm: "",
     passwordLoginForm: "",
     users: [],
@@ -33,19 +35,13 @@ export const Provider = function ({ children }) {
     setKey((pre)=>({...pre, openProfileBool:false}))
   };
   const openProfile = () => {
-    setKey((pre)=>({...pre, openProfileBool:true}))
-    setKey((pre)=>({...pre, profileReged:false}))
+    setKey((pre)=>({...pre, profileReged:false,openProfileBool:true}))
   };
   const logOut = () => {
-    setKey((pre)=>({...pre,open:true}))
-    setKey((pre)=>({...pre,profileReged:false}))
-    setKey((pre)=>({...pre,userRegisetered:false}))
+    setKey((pre)=>({...pre,open:true,profileReged:false,userRegisetered:false,profileLofinReg:false}))
   };
   const openModalRegister = () => {
-    setKey((pre) => ({ ...pre, openRegister: true }));
-    setKey((pre) => ({ ...pre, openLogIn: false }));
-    setKey((pre) => ({ ...pre, open: false }));
-
+    setKey((pre) => ({ ...pre, openRegister: true,openLogIn: false,open: false }));
     // setOpenBurger(false);
   };
 
@@ -62,7 +58,7 @@ export const Provider = function ({ children }) {
       key.validForm.validFirstName &&
       key.validForm.validLastName
     ) {
-      setKey((prev) => ({ ...prev,users: [key.userForm] }));
+      setKey((prev) => ({ ...prev,users: [...prev.users,key.userForm] }));
 
       setKey((pre) => ({...pre,
         userForm: {
@@ -73,8 +69,7 @@ export const Provider = function ({ children }) {
           password: "",
         },
       }));
-      setKey((pre) => ({ ...pre, openRegister: false }));
-      setKey((pre) => ({ ...pre, userRegisetered: true }));
+      setKey((pre) => ({ ...pre, openRegister: false,userRegisetered: true }));
     }
   };
   console.log(key.users)
@@ -85,6 +80,7 @@ export const Provider = function ({ children }) {
     setKey((prev) => ({...prev,
       userForm:{...prev.userForm, [name]: value, id: uid() },
     }));
+    setKey((pre)=>({...pre, registerUserProfile:{...pre.registerUserProfile,[name]:value,cardNumber:key.userForm.cardNumber},...pre,profileLofinReg:false}))
     let NamesReg = /[0-9]+/gi;
     let emailReg = /[A-z,0-9]+@[a-z]+\.[a-z]+/gi;
     let passwordReg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}/gi;
@@ -150,10 +146,9 @@ export const Provider = function ({ children }) {
       }));
     }
   };
-
+  console.log(key.registerUserProfile);
   const openModalLogIn = () => {
-    setKey((pre) => ({ ...pre, openLogIn: true }));
-    setKey((pre) => ({ ...pre, open: false }));
+    setKey((pre) => ({ ...pre, openRegister: false,openLogIn: true,open: false }));
     // setKey({ openModalRegister: false });
     setOpenBurger(false);
   };
@@ -170,19 +165,20 @@ export const Provider = function ({ children }) {
         key.users[i].email === key.emailLoginForm &&
         key.users[i].password === key.passwordLoginForm
       ) {
-        // setLoginUserProfile(users[i]);
         console.log(key.users[i])
         setKey((pre)=>({...pre,loginUserProfile:key.users[i]}))
         setKey((pre) => ({ ...pre, openLogIn: false }));
         setKey((pre) => ({ ...pre, profileReged: true }));
         setKey((pre) => ({ ...pre, userRegisetered: true }));
-
+        setKey((pre)=>({...pre,profileLofinReg:true}))
       }
     }
-  };
+  }; 
+
+  
   const openModalReg = () => {
     // if (openProfileBool) {
-    //   setProfileReged(false);
+    //   setProfileR  eged(false);
     // } else {
     setKey((pre) => ({ ...pre, profileReged: !key.profileReged }));
     console.log(key.profileReged)
@@ -200,6 +196,38 @@ export const Provider = function ({ children }) {
     // setOpenBurger(false);
   };
 
+
+
+  useEffect(() => {
+    const profileText = JSON.parse(localStorage.getItem("loginUserProfile"));
+    const profileRegedD = localStorage.getItem("profileReged");
+    const bolleaon = localStorage.getItem("registered");
+    const items = JSON.parse(localStorage.getItem("user"));
+    const regProfile= JSON.parse(localStorage.getItem("regProfile"))
+    const lofin=localStorage.getItem("lofin")
+    if (items && bolleaon) {
+      setKey((pre)=>({...pre,profileReged:JSON.parse(profileRegedD),loginUserProfile:profileText,users:items,userRegisetered:JSON.parse(bolleaon),registerUserProfile:regProfile,profileLofinReg:lofin}))
+      // setProfileReged(JSON.parse(profileRegedD));
+      // setLoginUserProfile(profileText);
+
+      // setUsers(items);
+      // setUserRegistered(JSON.parse(bolleaon));
+    }
+  }, []);
+
+  useEffect(() => {
+    setKey((pre)=>({...pre,profileReged:false}))
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("loginUserProfile", JSON.stringify(key.loginUserProfile));
+    localStorage.setItem("profileReged", key.profileReged);
+    localStorage.setItem("registered", key.userRegisetered);
+    localStorage.setItem("user", JSON.stringify(key.users));
+    localStorage.setItem("regProfile",JSON.stringify(key.registerUserProfile))
+    localStorage.setItem("lofin",key.profileLofinReg)
+  }, [key.profileLofinReg,key.registerUserProfile ,key.users, key.profileReged, key.userRegisetered, key.loginUserProfile]);
+
   return (
     <Context.Provider
       value={{
@@ -216,7 +244,7 @@ export const Provider = function ({ children }) {
         openProfile,
         logOut,
         closeProfile,
-        loginForm
+        loginForm,
       }}>
       {children}
     </Context.Provider>

@@ -14,20 +14,28 @@ export const ModalProfile = () => {
       )}>
       <div className={styles.myProfile__left}>
         <div className={styles.profileAvatar}>
-          {key.loginUserProfile.firstName !== undefined
+          {key.profileLofinReg
             ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase()
-            : "undefined"}
-          {key.loginUserProfile.lastName !== undefined
+            : key.registerUserProfile.firstName !== undefined 
+            ? key.registerUserProfile.firstName.slice(0, 1).toUpperCase() 
+            :"undefine"}
+          {key.profileLofinReg
             ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase()
-            : "undefined"}
+            : key.registerUserProfile.lastName !== undefined 
+            ? key.registerUserProfile.lastName.slice(0, 1).toUpperCase() 
+            :"undefine"}
         </div>
         <div className={styles.profileName}>
-          {key.loginUserProfile !== undefined
+        {key.profileLofinReg
             ? key.loginUserProfile.firstName
-            : "undefined"}
-          {key.loginUserProfile !== undefined
+            : key.registerUserProfile !== undefined 
+            ? key.registerUserProfile.firstName
+            :"undefine"}
+           {key.profileLofinReg
             ? key.loginUserProfile.lastName
-            : "undefined"}
+            : key.registerUserProfile !== undefined 
+            ? key.registerUserProfile.lastName 
+            :"undefine"}
         </div>
       </div>
       <div className={styles.myProfile__right}>
@@ -39,9 +47,11 @@ export const ModalProfile = () => {
         <p>
           Card number
           <a>
-            {key.loginUserProfile !== undefined
-              ? key.loginUserProfile.cardNumber
-              : console.log(key.loginUserProfile)}
+          {key.profileLofinReg
+            ? key.loginUserProfile.cardNumber
+            : key.registerUserProfile !== undefined 
+            ? key.registerUserProfile.cardNumber 
+            :"undefine"}
           </a>
         </p>
       </div>

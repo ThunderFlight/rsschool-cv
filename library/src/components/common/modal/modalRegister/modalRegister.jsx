@@ -10,32 +10,9 @@ export const ModalRegister = () => {
     openModalLogIn,
     submitUser,
     registerUserObj,
+    
   } = useAppContext();
 
-  // useEffect(() => {
-  //   const profileText = JSON.parse(localStorage.getItem("loginUserProfile"));
-  //   const profileRegedD = localStorage.getItem("profileReged");
-  //   const bolleaon = localStorage.getItem("registered");
-  //   const items = JSON.parse(localStorage.getItem("user"));
-  //   if (items && bolleaon) {
-  //     setProfileReged(JSON.parse(profileRegedD));
-  //     setLoginUserProfile(profileText);
-
-  //     setUsers(items);
-  //     setUserRegistered(JSON.parse(bolleaon));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   setProfileReged(false);
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("loginUserProfile", JSON.stringify(loginUserProfile));
-  //   localStorage.setItem("profileReged", profileReged);
-  //   localStorage.setItem("registered", userRegisetered);
-  //   localStorage.setItem("user", JSON.stringify(users));
-  // }, [users, profileReged, userRegisetered, loginUserProfile]);
 
   return (
     <form
@@ -44,7 +21,7 @@ export const ModalRegister = () => {
           ? classNames(styles.modalRegisterWrap, styles.regandlogform)
           : styles.modalRegisterWrapClose
       }
-      onSubmit={(e) => submitUser(e)}>
+      onSubmit={(e) => {submitUser(e) }}>
       <h3>REGISTER</h3>
       <img src={close} onClick={() => closeRegister()} />
       <div className={styles.regandlogform__form}>
