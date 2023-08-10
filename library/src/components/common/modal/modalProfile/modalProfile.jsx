@@ -4,7 +4,6 @@ import { useAppContext } from "../../../../contexts/useAppContext";
 import classNames from "classnames";
 import close from "../../../../../public/images/close_btn.svg";
 export const ModalProfile = () => {
-  // const [openProfileBool, setOpenProfileBool] = useState(false);
   const {key,closeProfile}=useAppContext()
   
   return (

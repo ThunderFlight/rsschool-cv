@@ -72,8 +72,6 @@ export const Provider = function ({ children }) {
       setKey((pre) => ({ ...pre, openRegister: false,userRegisetered: true }));
     }
   };
-  console.log(key.users)
-  console.log(key.loginUserProfile);
   const registerUserObj = (e) => {
     
     const { name, value } = e.target;
@@ -146,10 +144,8 @@ export const Provider = function ({ children }) {
       }));
     }
   };
-  console.log(key.registerUserProfile);
   const openModalLogIn = () => {
     setKey((pre) => ({ ...pre, openRegister: false,openLogIn: true,open: false }));
-    // setKey({ openModalRegister: false });
     setOpenBurger(false);
   };
 
@@ -165,7 +161,6 @@ export const Provider = function ({ children }) {
         key.users[i].email === key.emailLoginForm &&
         key.users[i].password === key.passwordLoginForm
       ) {
-        console.log(key.users[i])
         setKey((pre)=>({...pre,loginUserProfile:key.users[i]}))
         setKey((pre) => ({ ...pre, openLogIn: false }));
         setKey((pre) => ({ ...pre, profileReged: true }));
@@ -181,7 +176,6 @@ export const Provider = function ({ children }) {
     //   setProfileR  eged(false);
     // } else {
     setKey((pre) => ({ ...pre, profileReged: !key.profileReged }));
-    console.log(key.profileReged)
     // }
     setKey((pre) => ({ ...pre, open: false }));
     // setOpenBurger(false);

@@ -4,12 +4,6 @@ import { useAppContext } from "../../../../contexts/useAppContext";
 import classNames from "classnames";
 export const ModalProfileAuth = () => {
   const {key,openProfile,logOut}=useAppContext()
- 
-  // const logOut = () => {
-  //   setOpen(true);
-  //   setProfileReged(false);
-  //   setUserRegistered(false);
-  // };
   return (
     
       <div
