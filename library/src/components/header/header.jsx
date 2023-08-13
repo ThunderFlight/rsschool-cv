@@ -53,7 +53,7 @@ export const Header = ({ headerWith }) => {
             <div
               onClick={()=>openModalReg() }
               className={styles.headerWrapper__avatar}>
-         {key.profileLofinReg
+         {/* {key.profileLofinReg
             ? (key.loginUserProfile.firstName.slice(0, 1).toUpperCase() !==undefined ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase():"undefined" )
             : key.registerUserProfile.firstName !== undefined 
             ? key.registerUserProfile.firstName.slice(0, 1).toUpperCase() 
@@ -62,7 +62,7 @@ export const Header = ({ headerWith }) => {
             ? (key.loginUserProfile.firstName.slice(0, 1).toUpperCase() !==undefined ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase():"undefined" )
             : key.registerUserProfile.lastName !== undefined 
             ? key.registerUserProfile.lastName.slice(0, 1).toUpperCase() 
-            :"undefine"}
+            :"undefine"} */}
             </div>
           ) : (
             <img
