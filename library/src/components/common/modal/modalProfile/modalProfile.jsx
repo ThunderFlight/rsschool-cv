@@ -13,7 +13,7 @@ export const ModalProfile = () => {
       )}>
       <div className={styles.myProfile__left}>
         <div className={styles.profileAvatar}>
-          {key.profileLofinReg
+          {/* {key.profileLofinReg
             ? (key.loginUserProfile.firstName.slice(0, 1).toUpperCase() !==undefined ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase():"undefined" )
             : key.registerUserProfile.firstName !== undefined 
             ? key.registerUserProfile.firstName.slice(0, 1).toUpperCase() 
@@ -22,7 +22,7 @@ export const ModalProfile = () => {
             ? (key.loginUserProfile.lastName.slice(0, 1).toUpperCase() !==undefined ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase():"undefined" )
             : key.registerUserProfile.lastName !== undefined 
             ? key.registerUserProfile.lastName.slice(0, 1).toUpperCase() 
-            :"undefine"}
+            :"undefine"} */}
         </div>
         <div className={styles.profileName}>
         {key.profileLofinReg
