@@ -74,13 +74,13 @@
         }
       }
     }
-    .rightGet {
+    .rightSide {
       @include flex-col(center, center);
       @include media($SCREEN_FULLHD) {
         @include flex-col(start, end);
       }
-      button:first-child {
-        margin-right: 20px;
+      button:last-child {
+        margin-left: 20px;
       }
       h3,
       p {
@@ -105,4 +105,10 @@
       }
     }
   }
+}
+.colorYellow{
+  color: $GOLD;
+}
+.colorBlack{
+  color: $BLACK;
 }

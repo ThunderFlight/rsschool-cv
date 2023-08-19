@@ -11,7 +11,6 @@ import { WelcomeBanner } from "./components/welcomeBanner/welcomeBanner";
 import booksData from "./data/booksData.json";
 function App() {
   const [carousel, setCarousel] = useState(false);
-
   const [width, setWidth] = useState(window.screen.width);
 
   useEffect(() => {

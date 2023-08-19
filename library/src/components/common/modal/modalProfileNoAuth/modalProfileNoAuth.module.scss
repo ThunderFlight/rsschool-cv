@@ -13,24 +13,27 @@
   height: 115px;
   padding: 5px 10px 20px 10px;
   @include flex-col(center, center);
-  h3 {
+  &__title {
     @include text(15px, 700, $BLACK);
     line-height: 20px;
     font-family: Inter;
+    margin-bottom: 4px;
   }
-  div {
-    border: 1px solid $GOLD;
+  &__titleLine {
+    border: 0.5px solid $GOLD;
     width: 40px;
     margin-bottom: 15px;
   }
-  p {
+  &__buttonAutirize {
     @include text(15px, 400, $BLACK);
     font-family: Inter;
     line-height: 20px;
     margin-bottom: 10px;
     cursor: pointer;
+    border: 0px;
+    background-color: $WHITE;
   }
-  p:last-child {
+  &__buttonAutirize:last-child {
     margin-bottom: 0px;
   }
 }

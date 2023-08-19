@@ -12,115 +12,171 @@ import { ModalProfileAuth } from "../common/modal/modalProfileAuth/modalProfileA
 import { ModalProfile } from "../common/modal/modalProfile/modalProfile";
 
 export const Header = ({ headerWith }) => {
-  const [openBurger, setOpenBurger] = useState(false);
-
-  const { key, openModalNoReg, openModalReg } = useAppContext();
+  const [isOpenBurger, setIsOpenBurger] = useState(false);
+  const [isOpenNoAuth,setIsOpenNoAuth] = useState(false);
+  const [isOpenLogin,setOpenLogin]=useState(false);
+  const [isOpenRegister,setIsOpenRegister]=useState(false);
+  const [isOpenAuth, setIsOpenAuth] = useState(false)
+  const [isOpenProfile,setIsOpenProfile]=useState(false)
+  const {key, setKey} = useAppContext();
 
   const mechanismBurger = () => {
-    setOpenBurger(!openBurger);
-    setOpen(false);
-    setProfileReged(false);
-    setopenRegister(false);
-    setopenLogIn(false);
+    setIsOpenBurger(!isOpenBurger);
+    setIsOpenRegister(false);
+    setIsOpenProfile(false);
+    setIsOpenAuth(false);
+    setIsOpenNoAuth(false);
+    setOpenLogin(false);
   };
+  
+  const openModalNoAuth = () => {
+    setIsOpenNoAuth(!isOpenNoAuth);
+    setIsOpenBurger(false);
+     setIsOpenBurger(false);
+  }
+
+  const openModalLogIn = () => {
+    setOpenLogin(!isOpenLogin);
+    setIsOpenNoAuth(false);
+     setIsOpenBurger(false);
+  }
+  
+  const openModalYouDontHaveAccout = () => {
+    setOpenLogin(false);
+    setIsOpenRegister(true);
+     setIsOpenBurger(false);
+  }
+
+  const openModalYouHaveAccount = () => {
+    setOpenLogin(true);
+    setIsOpenRegister(false);
+     setIsOpenBurger(false);
+  }
+
+  const openModalRegister = () => {
+    setIsOpenRegister(true);
+    setIsOpenNoAuth(false);
+     setIsOpenBurger(false);
+  }
+
+  const closeModalRegister = () =>{
+    setIsOpenRegister(false);
+  }
+
+  const closeLogIn = () => {
+    setOpenLogin(false);
+  }
+
+  const openModalAuth = () => {
+    setIsOpenAuth(!isOpenAuth);
+     setIsOpenBurger(false);
+  } 
+
+  const openModalProfile = () => {
+    setIsOpenProfile(true);
+    setIsOpenAuth(false);
+     setIsOpenBurger(false);
+  };
+
+  const closeModalProfile = () => {
+    setIsOpenProfile(false)
+  }
+
+  const logOut = () => {
+    setKey((pre) =>({...pre,profileReged:false}))
+    setKey((pre) => ({ ...pre, userRegisetered: false }));
+    setIsOpenAuth(false)
+  }
 
   return (
     <header className={styles.header}>
-      <div className={styles.headerWrapper}>
-        <h1 className={styles.headerWrapper__headerTitle}>
-          Brooklyn Public Library
-        </h1>
-        <nav className={styles.headerWrapper__nav}>
-          <ul className={styles.list}>
-            <li>
-              <a href="#carousel">About</a>
-            </li>
-            <li>
-              <a href="#favorites">Favorites</a>
-            </li>
-            <li>
-              <a href="#coffeeShop">Coffee shop</a>
-            </li>
-            <li>
-              <a href="#ourContacts">Contacts</a>
-            </li>
-            <li>
-              <a href="#digitalLibraryCards">Library Card</a>
-            </li>
-            <div className={styles.dot}></div>
-          </ul>
-          {key.userRegisetered ? (
-            <div
-              onClick={()=>openModalReg() }
-              className={styles.headerWrapper__avatar}>
-         {key.profileLofinReg
-            ? (key.loginUserProfile.firstName.slice(0, 1).toUpperCase() !==undefined ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase():"undefined" )
-            : key.registerUserProfile.firstName !== undefined 
-            ? key.registerUserProfile.firstName.slice(0, 1).toUpperCase() 
-            :"undefine"}
-          {key.profileLofinReg
-            ? (key.loginUserProfile.firstName.slice(0, 1).toUpperCase() !==undefined ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase():"undefined" )
-            : key.registerUserProfile.lastName !== undefined 
-            ? key.registerUserProfile.lastName.slice(0, 1).toUpperCase() 
-            :"undefine"}
-            </div>
-          ) : (
-            <img
-              src={profileIcon}
-              onClick={() =>
-                openModalNoReg()
-              }
-              className={styles.noAvatar}
-            />
-          )}
-          {headerWith ? (
-            <img
-              src={openBurger ? burgerCross : burger}
-              className={styles.burgerImg}
-              onClick={mechanismBurger}
-            />
-          ) : (
-            <></>
-          )}
-          <div
-            className={classNames(
-              openBurger ? styles.burgerMenuTrue : styles.burgerMenuFalse
-            )}>
-            <ul className={styles.burgerList}>
+        <div className={styles.headerWrapper}>
+          <h1 className={styles.headerWrapper__headerTitle}>
+            Brooklyn Public Library
+          </h1>
+          <nav className={styles.headerWrapper__nav}>
+            <ul className={styles.list}>
               <li>
-                <a href="#carousel" onClick={mechanismBurger}>
-                  About
-                </a>
+                <a href="#carousel">About</a>
               </li>
               <li>
-                <a href="#favorites" onClick={mechanismBurger}>
-                  Favorites
-                </a>
+                <a href="#favorites">Favorites</a>
               </li>
               <li>
-                <a href="#coffeeShop" onClick={mechanismBurger}>
-                  Coffee shop
-                </a>
+                <a href="#coffeeShop">Coffee shop</a>
               </li>
               <li>
-                <a href="#ourContacts" onClick={mechanismBurger}>
-                  Contacts
-                </a>
+                <a href="#ourContacts">Contacts</a>
               </li>
               <li>
-                <a href="#digitalLibraryCards" onClick={mechanismBurger}>
-                  Library Card
-                </a>
+                <a href="#digitalLibraryCards">Library Card</a>
               </li>
+              <div className={styles.dot}></div>
             </ul>
-          </div>
-          <ModalProfileNoAuth />
-          <ModalLogin />
-          <ModalRegister />
-          <ModalProfileAuth/>
-          <ModalProfile/>
-        </nav>
-      </div>
-    </header>
+            {key.userRegisetered ? (
+              <div
+                onClick={()=>openModalAuth() }
+                className={styles.headerWrapper__avatar}>
+                {key.userRegisetered ? (key.loginUserProfile.firstName !== undefined ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase():'') : ''}
+                {key.userRegisetered ? (key.loginUserProfile.lastName !== undefined ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase():'') : ''}
+              </div>
+            ) : (
+              <img
+                src={profileIcon}
+                onClick={() =>
+                  openModalNoAuth()
+                }
+                className={styles.noAvatar}
+              />
+            )}
+            {headerWith ? (
+              <img
+                src={isOpenBurger ? burgerCross : burger}
+                className={styles.burgerImg}
+                onClick={mechanismBurger}
+              />
+            ) : (
+              <></>
+            )}
+            <div
+              className={classNames(
+                isOpenBurger ? styles.burgerMenuTrue : styles.burgerMenuFalse
+              )}>
+              <ul className={styles.burgerList}>
+                <li>
+                  <a href="#carousel" onClick={mechanismBurger}>
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#favorites" onClick={mechanismBurger}>
+                    Favorites
+                  </a>
+                </li>
+                <li>
+                  <a href="#coffeeShop" onClick={mechanismBurger}>
+                    Coffee shop
+                  </a>
+                </li>
+                <li>
+                  <a href="#ourContacts" onClick={mechanismBurger}>
+                    Contacts
+                  </a>
+                </li>
+                <li>
+                  <a href="#digitalLibraryCards" onClick={mechanismBurger}>
+                    Library Card
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <ModalProfileNoAuth isOpenNoAuth={isOpenNoAuth} openModalLogIn={openModalLogIn} openModalRegister={openModalRegister}/>
+            <ModalLogin wrap="wrapHeader" wrapPos="modalLogInWrap"  openState={isOpenLogin} openModalYouDontHaveAccout={openModalYouDontHaveAccout} closeLogIn={closeLogIn}/>
+            <ModalRegister regWrap="headerRegWrap" regWrapPos="modalRegisterWrap" openRegState={isOpenRegister} openModalYouHaveAccount={openModalYouHaveAccount} closeModalRegister={closeModalRegister}/>
+            <ModalProfileAuth isOpenAuth={isOpenAuth} openModalProfile={openModalProfile} logOut={logOut}/>
+            <ModalProfile wrapProfile="wrapHeaderMyProfile" openProfile={isOpenProfile} closeModalProfile={closeModalProfile}/>
+          </nav>
+        </div>
+      </header>
   );
 };

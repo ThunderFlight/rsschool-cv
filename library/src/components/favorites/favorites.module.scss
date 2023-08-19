@@ -85,8 +85,11 @@
 
     }
   }
-
+  
   .cover {
+    animation-duration: 3s;
+    animation-name: hideShow;
+    transition: all 3s;
     border: 1px solid $BLACK;
     padding: 15px 20px 15px 20px;
     width: 550px;
@@ -137,5 +140,15 @@
 
     line-height: 40px;
     letter-spacing: 2px;
+  }
+}
+
+@keyframes hideShow {
+  
+  0%{
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
   }
 }

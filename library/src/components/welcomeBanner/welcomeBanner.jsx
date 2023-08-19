@@ -6,7 +6,7 @@ export const WelcomeBanner = () => {
         <div className={styles.welcomeBannerWrapper__blockTitle}>
           <p>
             Welcome
-            <br /> to the Brooklyn Library
+            <br/> to the Brooklyn Library
           </p>
         </div>
       </div>
