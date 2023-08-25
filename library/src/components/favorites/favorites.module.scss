@@ -1,6 +1,7 @@
 @import "../../scss/main.scss";
 .favorites {
   @include pX;
+  position: relative;
   width: 100%;
   max-width: 1400;
   margin-bottom: 20px;

@@ -1,16 +1,21 @@
 import classNames from "classnames";
-import { useAppContext } from "../../../../contexts/useAppContext";
 import styles from "./modalProfileNoAuth.module.scss";
-export const ModalProfileNoAuth = ({isOpenNoAuth, openModalRegister, openModalLogIn}) => {
+import { Portal } from "../../../../contexts/Portal";
+
+export const ModalProfileNoAuth = ({ isOpenNoAuth, isOpenAuth, children }) => {
   return (
-    <div
-      className={classNames(
-        isOpenNoAuth ? styles.modalChooseOpened : styles.modalChooseClosed
-      )}>
-      <h3 className={styles.modalChooseOpened__title}>Profile</h3>
-      <div className={styles.modalChooseOpened__titleLine}></div>
-      <button className={styles.modalChooseOpened__buttonAutirize} onClick={() => openModalLogIn()}>Log In</button>
-      <button className={styles.modalChooseOpened__buttonAutirize} onClick={() => openModalRegister()}>Register</button>
-    </div>
+    <Portal htmlLink='nav'>
+      <div
+        className={classNames(
+          isOpenNoAuth || isOpenAuth
+            ? styles.modalChooseOpened
+            : styles.modalChooseClosed
+        )}
+      >
+        <h3>Profile</h3>
+        <div></div>
+        {children}
+      </div>
+    </Portal>
   );
 };

@@ -64,11 +64,14 @@
       p {
         @include text(10px, 400, $BLACK);
         font-family: Inter;
-        a {
+        button {
           margin-left: 10px;
           @include text(10px, 700, $BLACK);
           letter-spacing: 1px;
           font-family: Inter;
+          text-decoration: underline;
+          border: 0px;
+          background-color: $WHITE;
         }
       }
     }
@@ -130,11 +133,14 @@
       p {
         @include text(10px, 400, $BLACK);
         font-family: Inter;
-        a {
+        button {
           margin-left: 10px;
           @include text(10px, 700, $BLACK);
           letter-spacing: 1px;
           font-family: Inter;
+          border: 0px;
+          background-color: $WHITE;
+          text-decoration: underline;
         }
       }
     }

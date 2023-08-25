@@ -1,5 +1,6 @@
 import { H2Title } from "../common/h2Title/h2Title";
 import styles from "./ourContacts.module.scss";
+
 export const OurContacts = () => {
   // const {} = useLoadScript({});
   return (
@@ -23,9 +24,9 @@ export const OurContacts = () => {
             frameBorder="0"
             aria-hidden="false"
             tabIndex="0"
-            allowfullscreen="" 
+            allowFullScreen="" 
             loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>

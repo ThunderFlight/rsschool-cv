@@ -50,206 +50,47 @@
         margin: 0px;
       }
     }
-    .myProfileClose {
+    .closeList{
       display: none;
-    }
-    .myProfile {
-      display: block;
-      background-color: $WHITE;
-      width: 600px;
-      height: 400px;
-      position: absolute;
-      z-index: 2;
-      bottom: -420px;
-      right: 0px;
-      img {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-      }
-      @include flex-row(start);
-      &__left {
-        background-color: $BLACK;
-        width: 170px;
-        height: 100%;
-        @include flex-col(center, center);
-        .profileAvatar {
-          width: 80px;
-          height: 80px;
-          background-color: $WHITE;
-          margin-bottom: 20px;
-        }
-        .profileName {
-          width: 120px;
-          height: 30px;
-          background-color: $WHITE;
-        }
-      }
-      &__right {
-        padding: 40px 25px 40px 20px;
-        position: relative;
-
-        h3 {
-          @include text(40px, 400, $BLACK);
-          font-family: Forum;
-          letter-spacing: 0.8px;
-        }
-        ul {
-          list-style: none;
-        }
-      }
-    }
-    .modalChooseClosed {
-      display: none;
-    }
-    .modalChooseOpened {
-      display: block;
-      position: absolute;
-      z-index: 2;
-      right: 0px;
-      bottom: -130px;
-      background-color: $WHITE;
-      width: 80px;
-      height: 115px;
-      padding: 5px 10px 20px 10px;
-      @include flex-col(center, center);
-      h3 {
-        @include text(15px, 700, $BLACK);
-        line-height: 20px;
-        font-family: Inter;
-      }
-      div {
-        border: 1px solid $GOLD;
-        width: 40px;
-        margin-bottom: 15px;
-      }
-      p {
-        @include text(15px, 400, $BLACK);
-        font-family: Inter;
-        line-height: 20px;
-        margin-bottom: 10px;
-        cursor: pointer;
-      }
-      p:last-child {
-        margin-bottom: 0px;
-      }
-    }
-    .modalChooseRegisterOpened {
-      display: block;
-      position: absolute;
-      z-index: 2;
-      right: 0px;
-      bottom: -130px;
-      background-color: $WHITE;
-      width: 80px;
-      height: 115px;
-      padding: 5px 5px 20px 5px;
-      @include flex-col(center, center);
-      h3 {
-        @include text(15px, 700, $BLACK);
-        line-height: 20px;
-        font-family: Inter;
-      }
-      div {
-        border: 1px solid $GOLD;
-        width: 40px;
-        margin-bottom: 15px;
-      }
-      p {
-        @include text(14px, 400, $BLACK);
-        font-family: Inter;
-        line-height: 20px;
-        margin-bottom: 10px;
-        cursor: pointer;
-      }
-      p:last-child {
-        margin-bottom: 0px;
-      }
-    }
-    .modalLogInWrapClose {
-      display: none;
-    }
-    .modalLogInWrap {
-      position: absolute;
-      z-index: 2;
-      right: 0px;
-      top: 70px;
-    }
-    .modalRegisterWrapClose {
-      display: none;
-    }
-    .modalRegisterWrap {
-      position: absolute;
-      z-index: 2;
-      right: 0px;
-      bottom: -390px;
-    }
-    .regandlogform {
-      display: block;
-      background-color: $WHITE;
-      @include flex-col(center, center);
-      position: absolute;
-      z-index: 2;
-
-      padding: 20px 25px 20px 25px;
-      h3 {
-        @include text(20px, 400, $BLACK);
-        font-family: Forum;
-        line-height: 20px;
-        letter-spacing: 0.4px;
-        margin-bottom: 20px;
-      }
-      img {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        cursor: pointer;
-      }
-      &__form {
-        .validFirstName:valid {
-          border: 1px solid green;
-        }
-        .invalidFirstName:invalid:focus {
-          outline: 0;
-          border: 1px solid red;
-        }
-        @include flex-col(start, start);
-        label {
-          @include text(15px, 400, $BLACK);
-          letter-spacing: 0.3px;
-          line-height: 20px;
-          font-family: Inter;
-          margin-bottom: 10px;
-        }
-
-        input {
-          border: 1px solid $GOLD;
-          width: 200px;
-          height: 20px;
-          margin-bottom: 10px;
-        }
-        p {
-          @include text(10px, 400, $BLACK);
-          font-family: Inter;
-          a {
-            margin-left: 10px;
-            @include text(10px, 700, $BLACK);
-            letter-spacing: 1px;
-            font-family: Inter;
-          }
-        }
-      }
     }
     .list {
-      display: none;
+      @include flex-col(center,center);
+      z-index: 2;
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background-color: $BLACK;
+      padding: 100px 90px 100px 90px;
       @include media($SCREEN_DESKTOP) {
         display: block;
         list-style: none;
         @include flex-row(center);
+
+        position: sticky;
+        background-color: $LIGHTBLACK;
+        padding: 0px;
+        top:0px;
+        right: 0px;
       }
-      & li a:hover {
+      li {
+        text-align: center;
+        width: 150px;
+        @include media($SCREEN_DESKTOP) {
+          width: auto;
+        }
+      }
+      li a:hover {
         color: $GOLD;
       }
+      li a {
+        @include text(20px, 400, $WHITE);
+        line-height: 50px;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s ease-in-out;
+        
+      }
+      @include media($SCREEN_DESKTOP) {
       li {
         margin-right: 30px;
         position: relative;
@@ -257,26 +98,6 @@
       li:nth-child(5) {
         margin-right: 40px;
       }
-      & li a {
-        @include text(20px, 400, $WHITE);
-        line-height: 50px;
-        text-decoration: none;
-        font-family: "Inter", sans-serif;
-        transition: all 0.2s ease-in-out;
-      }
-      // .dot {
-      //   position: absolute;
-      //   left: 0px;
-      //   bottom: 0px;
-      //   width: 6px;
-      //   height: 6px;
-      //   background-color: $GOLD;
-      //   border-radius: 50%;
-      //   opacity: 0;
-      //   transform: translateX(30px);
-      //   transition: all 0.2s ease-in-out;
-      // }
-
       & li::after {
         content: "";
         background-color: $GOLD;
@@ -288,31 +109,12 @@
         transform: translateX(-50%);
         @include transition(left, opacity);
       }
-
+      
       & li:hover::after {
         left: 50%;
         opacity: 1;
       }
-      // & li:nth-child(2):hover ~ .dot {
-      //   transform: translateX(130px);
-      //   transition: all 0.2s ease-in-out;
-      //   opacity: 1;
-      // }
-      // & li:nth-child(3):hover ~ .dot {
-      //   transform: translateX(260px);
-      //   transition: all 0.2s ease-in-out;
-      //   opacity: 1;
-      // }
-      // & li:nth-child(4):hover ~ .dot {
-      //   transform: translateX(390px);
-      //   transition: all 0.2s ease-in-out;
-      //   opacity: 1;
-      // }
-      // & li:nth-child(5):hover ~ .dot {
-      //   transform: translateX(520px);
-      //   transition: all 0.2s ease-in-out;
-      //   opacity: 1;
-      // }
+    }
     }
     .burgerMenuTrue {
       display: block;

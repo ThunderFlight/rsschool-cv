@@ -1,18 +1,57 @@
 import classNames from "classnames";
-import { useState } from "react";
-import { CustomButton } from "../common/customButton/customButton";
+import { useEffect, useState } from "react";
+import CustomButton from "../common/customButton/customButton";
 import { H2Title } from "../common/h2Title/h2Title";
 import styles from "./favorites.module.scss";
+import { useAppContext } from "../../contexts/useAppContext";
+import { ModalBuyCard } from "../common/modal/modalBuyCard/modalBuyCard";
+import ModalLogin from "../common/modal/modalLogIn/modalLogin";
+
 export const Favorites = ({ data }) => {
   const [check, setCheck] = useState("winter");
+  const [isFavoritesLogin, setFavoritesLogin] = useState(false);
+  const [isBuyCard, setBuyCard] = useState(false);
+  const {
+    currentUser,
+    setCurrentUser,
+    setDataBook,
+    dataBook,
+    users,
+    setUsers,
+  } = useAppContext();
 
   const checkRadioBtn = (e) => {
     setCheck(e.target.value);
   };
+
+  const openLogIn = () => {
+    setFavoritesLogin(true);
+  };
+  const closeLogIn = () => {
+    setFavoritesLogin(false);
+  };
+
+  const openBuyCard = () => {
+    setBuyCard(true);
+  };
+
+  const closeBuyCard = () => {
+    setBuyCard(false);
+  };
+
+  const buyCard = () => {
+    const updatedCurrentUser = {
+      ...currentUser,
+      rentedBooks: [...currentUser.rentedBooks, dataBook.name],
+    };
+    setCurrentUser(updatedCurrentUser);
+    setUsers(users.filter((item) => item.email !== currentUser.email));
+    setUsers((prev) => [...prev, updatedCurrentUser]);
+  };
+  console.log(currentUser.rentedBooks);
   return (
     <section className={styles.favorites} id="favorites">
       <H2Title>Favorites</H2Title>
-
       <div className={styles.seasonBooks}>
         <p>Pick favorites of season</p>
         <span className={styles.seasonBooks__pagination}>
@@ -65,89 +104,64 @@ export const Favorites = ({ data }) => {
                         <div className={styles.cover__lineGold}></div>
                         <h4
                           className={classNames(
-                            styles.cover__name,
-                            styles.nameAndAuthor
-                          )}>
+                            styles.nameAndAuthor,
+                            styles.cover__name
+                          )}
+                        >
                           {book.name}
                         </h4>
                         <h4
                           className={classNames(
-                            styles.cover__author,
-                            styles.nameAndAuthor
-                          )}>
+                            styles.nameAndAuthor,
+                            styles.cover__author
+                          )}
+                        >
                           {book.author}
                         </h4>
                         <p className={styles.cover__description}>
                           {book.description}
                         </p>
-                        <CustomButton color="bookBtn">Buy</CustomButton>
+                          {currentUser.rentedBooks.map((item) => {
+                              return item === book.name ? (
+                                <CustomButton
+                                  className="ownCardButton"
+                                  type="submit"
+                                >
+                                  Own
+                                </CustomButton>
+                              ) : (
+                                <CustomButton
+                                  className="bookBtn"
+                                  onClick={() => {
+                                    currentUser !== null
+                                      ? (openBuyCard(), setDataBook(book))
+                                      : openLogIn();
+                                  }}
+                                >
+                                  Buy
+                                </CustomButton>
+                              );
+                            })}
                         <img src={book.src} className={styles.cover__image} />
                       </div>
-                      {/* <div className={styles.modalBuy}>
-                        {/* <div className={styles.modalBuy__titel}>
-                          <h3>BUY A LIBRARY CARD</h3>
-                          <img src="" />
-                        </div>
-
-                        <div className={styles.modalBuy__formBuyWrapper}>
-                          <form className={styles.formBuy}>
-                            <label htmlFor="bankNumber">Bank card Number</label>
-                            <input
-                              type="number"
-                              maxLength="16"
-                              minLength="16"
-                              id="bankNumber"
-                            />
-                            <label htmlFor="month">Expiration Code</label>
-                            <div>
-                              <input
-                                type="number"
-                                id="month"
-                                maxLength="2"
-                                max="12"
-                              />
-                              <input
-                                type="number"
-                                id="day"
-                                maxLength="2"
-                                max="30"
-                              />
-                            </div>
-                            <label htmlFor="holderName">Cardholder name</label>
-                            <input type="text" id="holderName" />
-                            <label htmlFor="postalCode">Postal Code</label>
-                            <input
-                              id="postalCode"
-                              type="number"
-                              maxLength="5"
-                              minLength="5"
-                            />
-                            <label htmlFor="cityTown">City &#47; Town</label>
-                            <input type="text" id="cityTown" />
-                            <div>
-                              <CustomButton color="modalBtn" type="submit">
-                                Buy
-                              </CustomButton>
-                              <h3>{book.price}</h3>
-                            </div>
-                          </form>
-                          <div className={styles.privacy}>
-                            <p>
-                              If you are live, work, attend school, or pay
-                              property taxes in New York State, you can get a
-                              $25 digital library card right now using this
-                              online form. Visitors to New York State can also
-                              use this form to apply for a temporary card.
-                            </p>
-                          </div>
-                        </div>
-                      </div> */}
                     </div>
                   );
                 });
               }
             }
           })}
+          <ModalBuyCard
+            closeBuyCard={closeBuyCard}
+            openCardState={isBuyCard}
+            dataBook={dataBook}
+            buyCard={buyCard}
+          />
+          <ModalLogin
+            wrap="wrapDigit"
+            wrapPos="modalLogInWrapCenter"
+            openState={isFavoritesLogin}
+            closeLogIn={() => closeLogIn()}
+          />
         </div>
       </div>
     </section>

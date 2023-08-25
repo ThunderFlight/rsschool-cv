@@ -43,3 +43,27 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.buyCardButton {
+  border-radius: 2px;
+  @include text(10px, 700, $BLACK);
+  width: 75px;
+  height: 30px;
+  margin-top: 10px;
+  margin-right: 25px;
+}
+.ownCardButton{
+  width: 75px;
+  height: 30px;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  @include text(10px, 700, $GOLD);
+  border: 1px solid $GOLD;
+  font-family: Inter;
+  letter-spacing: 1px;
+  cursor:not-allowed;
+  &:hover{
+    color: $BLACK;
+  }
+}

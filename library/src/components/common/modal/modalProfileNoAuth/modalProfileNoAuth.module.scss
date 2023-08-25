@@ -5,35 +5,34 @@
 .modalChooseOpened {
   display: block;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   right: 0px;
-  bottom: -130px;
+  top: 80px;
   background-color: $WHITE;
   width: 80px;
   height: 115px;
-  padding: 5px 10px 20px 10px;
+  padding: 5px 5px 20px 5px;
   @include flex-col(center, center);
-  &__title {
+  h3 {
     @include text(15px, 700, $BLACK);
     line-height: 20px;
     font-family: Inter;
-    margin-bottom: 4px;
   }
-  &__titleLine {
-    border: 0.5px solid $GOLD;
+  div {
+    border: 1px solid $GOLD;
     width: 40px;
     margin-bottom: 15px;
   }
-  &__buttonAutirize {
-    @include text(15px, 400, $BLACK);
+  button {
+    @include text(14px, 400, $BLACK);
     font-family: Inter;
     line-height: 20px;
     margin-bottom: 10px;
     cursor: pointer;
-    border: 0px;
     background-color: $WHITE;
+    border: 0px;
   }
-  &__buttonAutirize:last-child {
+  button:last-child {
     margin-bottom: 0px;
   }
 }

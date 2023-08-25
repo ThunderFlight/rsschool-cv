@@ -3,39 +3,50 @@ import styles from "./modalProfile.module.scss";
 import { useAppContext } from "../../../../contexts/useAppContext";
 import classNames from "classnames";
 import close from "../../../../../public/images/close_btn.svg";
-export const ModalProfile = ({wrapProfile, openProfile, closeModalProfile}) => {
-  const {key}=useAppContext()
-  
+import { Portal } from "../../../../contexts/Portal";
+export const ModalProfile = ({
+  wrapProfile,
+  openProfile,
+  closeModalProfile,
+}) => {
+  const {currentUser } = useAppContext();
+
   return (
-  <div className={classNames(
-        openProfile ? styles[wrapProfile] : styles.myProfileClose
-      )}>
-    <div className={styles.myProfile}>
-      <div className={styles.myProfile__left}>
-        <div className={styles.profileAvatar}>
-            {key.userRegisetered ? (key.loginUserProfile.firstName !== undefined ? key.loginUserProfile.firstName.slice(0, 1).toUpperCase():"LOL") : ''}
-            {key.userRegisetered ? (key.loginUserProfile.lastName !== undefined ? key.loginUserProfile.lastName.slice(0, 1).toUpperCase():"LOL") : ''}
-        </div>
-        <div className={styles.profileName}>
-          {key.userRegisetered ? (key.loginUserProfile.firstName !== undefined ? key.loginUserProfile.firstName: "LOL" ) : ''}
-          {key.userRegisetered ? (key.loginUserProfile.lastName !== undefined ? key.loginUserProfile.lastName: "LOL" ) : ''}
+    <Portal htmlLink="nav">
+      <div
+        className={classNames(
+          openProfile ? styles[wrapProfile] : styles.myProfileClose
+        )}
+      >
+        <div className={styles.myProfile}>
+          <div className={styles.myProfile__left}>
+            <div className={styles.profileAvatar}>
+              {currentUser !== null
+                ? currentUser.firstName.slice(0, 1).toUpperCase()
+                : ""}
+              {currentUser !== null
+                ? currentUser.lastName.slice(0, 1).toUpperCase()
+                : ""}
+            </div>
+            <div className={styles.profileName}>
+              {currentUser !== null ? currentUser.firstName : ""}
+              {currentUser !== null ? currentUser.lastName : ""}
+            </div>
+          </div>
+          <div className={styles.myProfile__right}>
+            <h3>MY PROFILE</h3>
+            <ul>
+              <li></li>
+            </ul>
+            <h4>Rented books</h4>
+            <p>
+              Card number
+              <a>{currentUser !== null ? currentUser.cardNumber : ""}</a>
+            </p>
+          </div>
+          <img src={close} onClick={() => closeModalProfile()} />
         </div>
       </div>
-      <div className={styles.myProfile__right}>
-        <h3>MY PROFILE</h3>
-        <ul>
-          <li></li>
-        </ul>
-        <h4>Rented books</h4>
-        <p>
-          Card number
-          <a>
-          {key.userRegisetered ? (key.loginUserProfile.cardNumber !== undefined ? key.loginUserProfile.cardNumber :"LOL"):"undefine"}
-          </a>
-        </p>
-      </div>
-      <img src={close} onClick={()=>closeModalProfile()} />
-    </div>
-    </div>
+    </Portal>
   );
 };
