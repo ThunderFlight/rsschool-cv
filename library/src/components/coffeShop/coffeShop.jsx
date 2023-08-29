@@ -1,10 +1,10 @@
 import classNames from "classnames";
-import { H2Title } from "../common/h2Title/h2Title";
+import { Title } from "../common/title/title";
 import styles from "./coffeShop.module.scss";
 export const CoffeShop = () => {
   return (
     <section className={styles.coffeShop} id="coffeeShop">
-      <H2Title>Coffee Shop</H2Title>
+      <Title>Coffee Shop</Title>
       <p className={styles.coffeShop__descriptionUp}>
         In our library, we have of cozy coffee shop, welcoming in customers with
         frothy cappuccinos and friendly conversation. you can get a favorite
@@ -22,7 +22,7 @@ export const CoffeShop = () => {
               )}>
               <p>Cold Brew Coffee</p>
               <div></div>
-              <p>&#36;3</p>
+              <p>$3</p>
             </li>
             <li
               className={classNames(
@@ -31,7 +31,7 @@ export const CoffeShop = () => {
               )}>
               <p>French Press Pot</p>
               <div></div>
-              <p>&#36;5</p>
+              <p>$5</p>
             </li>
             <li
               className={classNames(
@@ -40,7 +40,7 @@ export const CoffeShop = () => {
               )}>
               <p>Espresso</p>
               <div></div>
-              <p>&#36;2</p>
+              <p>$2</p>
             </li>
             <li
               className={classNames(
@@ -49,7 +49,7 @@ export const CoffeShop = () => {
               )}>
               <p>Cappuccino</p>
               <div></div>
-              <p>&#36;4</p>
+              <p>$4</p>
             </li>
             <li
               className={classNames(
@@ -58,7 +58,7 @@ export const CoffeShop = () => {
               )}>
               <p>Hot Tea</p>
               <div></div>
-              <p>&#36;2</p>
+              <p>$2</p>
             </li>
             <li
               className={classNames(
@@ -67,7 +67,7 @@ export const CoffeShop = () => {
               )}>
               <p>Cold Tea</p>
               <div></div>
-              <p>&#36;2</p>
+              <p>$2</p>
             </li>
           </ul>
         </div>
@@ -81,7 +81,7 @@ export const CoffeShop = () => {
               )}>
               <p>Forest Gateau</p>
               <div></div>
-              <p>&#36;16</p>
+              <p>$16</p>
             </li>
             <li
               className={classNames(
@@ -90,7 +90,7 @@ export const CoffeShop = () => {
               )}>
               <p>Blue Moon</p>
               <div></div>
-              <p>&#36;16</p>
+              <p>$16</p>
             </li>
             <li
               className={classNames(
@@ -99,7 +99,7 @@ export const CoffeShop = () => {
               )}>
               <p>Truffle Cake</p>
               <div></div>
-              <p>&#36;15</p>
+              <p>$15</p>
             </li>
             <li
               className={classNames(
@@ -108,7 +108,7 @@ export const CoffeShop = () => {
               )}>
               <p>Chocolate Cake</p>
               <div></div>
-              <p>&#36;18</p>
+              <p>$18</p>
             </li>
             <li
               className={classNames(
@@ -117,7 +117,7 @@ export const CoffeShop = () => {
               )}>
               <p>Poet’s Dream Cake</p>
               <div></div>
-              <p>&#36;16</p>
+              <p>$16</p>
             </li>
             <li
               className={classNames(
@@ -126,7 +126,7 @@ export const CoffeShop = () => {
               )}>
               <p>Pineapple Cake</p>
               <div></div>
-              <p>&#36;14</p>
+              <p>$14</p>
             </li>
           </ul>
         </div>

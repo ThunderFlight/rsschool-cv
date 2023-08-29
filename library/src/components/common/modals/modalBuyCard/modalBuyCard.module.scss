@@ -3,7 +3,9 @@
     display: none;
 }
 .grayLayer{
-  background: rgba(142, 142, 142, 0.3);
+  background: rgba(12, 12, 14, 0.3);
+  animation: background 1s;
+  transition: all 1s;
   width: 100%;
   position: fixed;
   height: 100%;
@@ -91,5 +93,14 @@
           letter-spacing: 2px;
         }
       }
+  }
+}
+
+@keyframes background {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
   }
 }

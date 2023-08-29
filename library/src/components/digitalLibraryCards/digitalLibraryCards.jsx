@@ -1,19 +1,20 @@
 import  CustomButton  from "../common/customButton/customButton";
-import { H2Title } from "../common/h2Title/h2Title";
+import { Title } from "../common/title/title";
 import styles from "./digitalLibraryCards.module.scss";
-import { useAppContext } from "../../contexts/useAppContext";
-import  ModalLogin  from "../common/modal/modalLogIn/modalLogin";
-import { ModalRegister } from "../common/modal/modalRegister/modalRegister";
-import { ModalProfile } from "../common/modal/modalProfile/modalProfile";
+import { useAppContext } from "../../hooks/useAppContext";
+import  ModalLogin  from "../common/modals/modalLogIn/modalLogin";
+import { ModalRegister } from "../common/modals/modalRegister/modalRegister";
+import { ModalProfile } from "../common/modals/modalProfile/modalProfile";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import useBoolean from "../../hooks/useBoolean";
 
 export const DigitalLibraryCards = () => {
 
-  const [isDigitalProfile, setDigitalProfile]=useState(false);
-  const [isDigitalRegister, setDigitalRegister]=useState(false);
-  const [isDigitalLogin, setDigitalLogin]=useState(false);
-  const [isDigitDataTrue, setDigitDataTrue]=useState(false);
+  const {value:isDigitalProfile, setTrue:setDigitalProfileTrue, setFalse:setDigitalProfileFalse}=useBoolean()
+  const {value:isDigitalRegister, setTrue:setDigitalRegisterTrue, setFalse:setDigitalRegisterFalse}=useBoolean()
+  const {value:isDigitalLogin, setTrue:setDigitalLoginTrue, setFalse:setDigitalLoginFalse}=useBoolean()
+  const {value:isDigitValues, setTrue:setDigitValuesTrue, setFalse:setDigitValuesFalse}=useBoolean()
+  const {value:isCopied, setTrue:setCopiedTrue, setFalse:setCopiedFalse}=useBoolean()
 
   const {
     users,
@@ -26,51 +27,41 @@ export const DigitalLibraryCards = () => {
       cardNumber: "",
     },
   });
-
-  const digitSubmit = (data) => {
-    let a = data.name.split(" ");
-    for (let k in users) {
+  
+  const digitSubmit = (cardData) => {
+    const sliceFullName = cardData.name.split(" ");
+    users.map((item)=>{
+      console.log(item.cardNumber);
       if (
-        data.cardNumber === users[k].cardNumber &&
-        a[0] === users[k].firstName &&
-        a[1] === users[k].lastName
+        cardData.cardNumber === item.cardNumber &&
+        sliceFullName[0] === item.firstName &&
+        sliceFullName[1] === item.lastName
       ) {
-        setDigitDataTrue(true)
+        setDigitValuesTrue()
       }
-    }
+    })
     setTimeout(() => {
-      setDigitDataTrue(false)
+      setDigitValuesFalse()
     }, 10000);
   };
 
-  const openDigitProfile = () => {
-    setDigitalProfile(true);
-  };
-  const closeDigitProfile = () => {
-    setDigitalProfile(false);
-  };
-  const openDigitModalRegister = () => {
-    setDigitalRegister(true)
-  };
-  const closeDigitModalRegister = () => {
-    setDigitalRegister(false)
-  };
-  const openDigitModalLogin = () => {
-    setDigitalLogin(true)
-  };
-  const closeDigitModalLogin = () => {
-    setDigitalLogin(false)
-  };
+  const copyCardNumber = () => {
+    setCopiedTrue();
+    navigator.clipboard.writeText(currentUser.cardNumber);
+    setTimeout(()=>{
+      setCopiedFalse();
+    },1000)
+  }
 
   return (
     <section className={styles.digitalLibraryCards} id="digitalLibraryCards">
-      <H2Title>Digital Library Cards</H2Title>
+      <Title>Digital Library Cards</Title>
       <div className={styles.digitalLibraryCards__wrapp}>
         <div className={styles.leftFind}>
           <p className={styles.leftFind__titleCard}>Find your Library card</p>
           <form
             className={styles.leftFind__borderCard}
-            onSubmit={handleSubmit((data) => digitSubmit(data))}
+            onSubmit={handleSubmit((cardData)=>digitSubmit(cardData))}
           >
             <div className={styles.innerBlock}>
               <p>Brooklyn Public Library</p>
@@ -89,10 +80,64 @@ export const DigitalLibraryCards = () => {
                 placeholder="Card number"
               />
             </div>
-            {!isDigitDataTrue ? (
+            {!isDigitValues ? (
               <CustomButton type="submit">Check the card</CustomButton>
             ) : (
-              ""
+              <ul className={styles.profileStats}>
+              <li className={styles.profileStats__elements}>
+                <h3 className={styles.elementTitle}>Visits</h3>
+                <svg
+                  width="21"
+                  height="21"
+                  viewBox="0 0 21 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M10.5 10C13.2614 10 15.5 7.76143 15.5 5C15.5 2.23857 13.2614 0 10.5 0C7.73857 0 5.5 2.23857 5.5 5C5.5 7.76143 7.73857 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5H0.5C0.5 18.3478 1.55357 15.8043 3.42894 13.9289C5.30429 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z"
+                    fill="#BB945F"
+                  />
+                </svg>{" "}
+                <p className={styles.elementStatNumber}>
+                  {currentUser !== null && currentUser.visits}
+                </p>
+              </li>
+              <li className={styles.profileStats__elements}>
+                <h3 className={styles.elementTitle}>Bonuses</h3>
+                <svg
+                  width="20"
+                  height="21"
+                  viewBox="0 0 20 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z"
+                    fill="#BB945F"
+                  />
+                </svg>
+                <p className={styles.elementStatNumber}>1350</p>
+              </li>
+              <li className={styles.profileStats__elements}>
+                <h3 className={styles.elementTitle}>Books</h3>
+                <svg
+                  width="20"
+                  height="21"
+                  viewBox="0 0 20 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="20" height="21" fill="#BB945F" />
+                  <rect x="2" width="1" height="19" fill="#826844" />
+                  <rect x="1" width="1" height="21" fill="white" />
+                </svg>
+                <p className={styles.elementStatNumber}>
+                  {currentUser !== null && currentUser.rentedBooks.length}
+                </p>
+              </li>
+            </ul>
             )}
           </form>
         </div>
@@ -104,26 +149,24 @@ export const DigitalLibraryCards = () => {
           </p>
           <span>
             {currentUser !== null ? (
-              <CustomButton className="regBtn" onClick={() => openDigitProfile()}>
+              <CustomButton className="regBtn" onClick={setDigitalProfileTrue}>
                 Profile
               </CustomButton>
             ) : (
               <CustomButton
                 className="regBtn"
-                onClick={() => openDigitModalRegister()}
+                onClick={setDigitalRegisterTrue}
               >
                 sign Up
               </CustomButton>
             )}
-            {currentUser === null ? (
+            {currentUser === null && (
               <CustomButton
                 className="regBtn"
-                onClick={() => openDigitModalLogin()}
+                onClick={setDigitalLoginTrue}
               >
                 Log in
               </CustomButton>
-            ) : (
-              ""
             )}
           </span>
         </div>
@@ -132,20 +175,23 @@ export const DigitalLibraryCards = () => {
         regWrap="digitRegWrap"
         regWrapPos="modalLogInWrapCenter"
         openRegState={isDigitalRegister}
-        openLogIn={ openDigitModalLogin}
-        closeModalRegister={closeDigitModalRegister}
+        openLogIn={setDigitalLoginTrue}
+        closeModalRegister={setDigitalRegisterFalse}
       />
       <ModalLogin
         wrap="wrapDigit"
         wrapPos="modalLogInWrapCenter"
         openState={isDigitalLogin}
-        openSignUp={openDigitModalRegister}
-        closeLogIn={closeDigitModalLogin}
+        openSignUp={setDigitalRegisterTrue}
+        closeLogIn={setDigitalLoginFalse}
+        
       />
       <ModalProfile
         wrapProfile="wrapDigitalMyProfile"
         openProfile={ isDigitalProfile}
-        closeModalProfile={closeDigitProfile}
+        closeModalProfile={setDigitalProfileFalse}
+        copyCardNumber={copyCardNumber}
+        isCopied={isCopied}
       />
     </section>
   );

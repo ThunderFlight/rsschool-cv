@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import styles from "./customButton.module.scss";
 
-const CustomButton = ({ className, children, ...props}) => {
+const CustomButton = ({ className, children, isDisabled=false, ...props}) => {
   return (
-    <button className={classNames(styles.customBtn, styles[className])} {...props}>
+    <button disabled={isDisabled} className={classNames(styles.customBtn, styles[className])} {...props}>
       {children}
     </button>
   );

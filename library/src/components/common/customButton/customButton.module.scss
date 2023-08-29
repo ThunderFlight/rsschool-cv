@@ -12,7 +12,7 @@
   text-emphasis: none;
   border-radius: 2px;
   transition: 0.5s;
-  &:hover {
+  &:hover:enabled {
     background-color: $GOLD;
     border-color: $GOLD;
   }
@@ -63,7 +63,7 @@
   font-family: Inter;
   letter-spacing: 1px;
   cursor:not-allowed;
-  &:hover{
-    color: $BLACK;
+  &:hover:enabled{
+    background-color: $WHITE;
   }
 }

@@ -6,7 +6,7 @@ import { DigitalLibraryCards } from "./components/digitalLibraryCards/digitalLib
 import { Favorites } from "./components/favorites/favorites";
 import { Footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
-import { OurContacts } from "./components/ourContacts/ourContacts";
+import { Contacts } from "./components/contacts/contacts";
 import { WelcomeBanner } from "./components/welcomeBanner/welcomeBanner";
 import booksData from "./data/booksData.json";
 function App() {
@@ -32,13 +32,13 @@ function App() {
   }, [width]);
   return (
     <div className="App">
-      <Header headerWith={carousel} />
+      <Header headerWidth={carousel} />
       <main style={styles.main}>
         <WelcomeBanner />
-        <AboutCarousel carouselWith={carousel} />
+        <AboutCarousel carouselWidth={carousel} />
         <Favorites data={booksData} />
         <CoffeShop />
-        <OurContacts />
+        <Contacts />
         <DigitalLibraryCards />
       </main>
       <Footer />

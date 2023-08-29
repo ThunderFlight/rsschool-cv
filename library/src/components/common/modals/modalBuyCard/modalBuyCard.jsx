@@ -6,7 +6,7 @@ import crossItem from "../../../../../public/images/close_btn_white.svg";
 import { useForm } from "react-hook-form";
 import { FormInput } from "../../formInput/formInput";
 import { uid } from "uid";
-import { useAppContext } from "../../../../contexts/useAppContext";
+import { useAppContext } from "../../../../hooks/useAppContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -24,24 +24,28 @@ const buyCardSchema = yup.object().shape({
 
 const formLibraryCard = [
   {
+    type:"text",
     label: "CVC",
     name: "cvc",
     pattern: /[3]{3}/gi,
     width: "45px",
   },
   {
+    type:"text",
     label: "Cardholder name",
     name: "cardholderName",
     pattern: /[A-z]+/gi,
     width: "200px",
   },
   {
+    type:"text",
     label: "Postal code",
     name: "postalCode",
     pattern: /\d{5}([ \-]\d{4})?/gi,
     width: "200px",
   },
   {
+    type:"text",
     label: "City / Town",
     name: "cityTown",
     pattern: /[A-Z]+/gi,
@@ -49,8 +53,9 @@ const formLibraryCard = [
   },
 ];
 
-export const ModalBuyCard = ({ openCardState, closeBuyCard, buyCard }) => {
-  const {dataBook, currentUser} = useAppContext()
+const ModalBuyCard = ({ openCardState, closeBuyCard, buyCard }) => {
+  const {dataBook} = useAppContext()
+  
   const {
     register,
     handleSubmit,
@@ -65,10 +70,12 @@ export const ModalBuyCard = ({ openCardState, closeBuyCard, buyCard }) => {
     cityTown: "",
     resolver: yupResolver(buyCardSchema),
   });
+  
   const onSubmit = () =>{
     closeBuyCard();
     buyCard()
   }
+  
   return (
     <Portal htmlLink={'#favorites'}>
       <div
@@ -118,17 +125,18 @@ export const ModalBuyCard = ({ openCardState, closeBuyCard, buyCard }) => {
               {errors.expirationMonth && (
                 <p>{errors.expirationMonth.message}</p>
               )}
-              {formLibraryCard.map((index, id) => {
+              {formLibraryCard.map((item, id) => {
                 return (
                   <FormInput
-                    width={index.width}
-                    pattern={index.pattern}
-                    name={index.name}
+                    width={item.width}
+                    pattern={item.pattern}
+                    name={item.name}
                     id={uid()}
                     key={id}
                     register={register}
-                    label={index.label}
+                    label={item.label}
                     errors={errors}
+                    type={item.type}
                   />
                 );
               })}
@@ -153,21 +161,4 @@ export const ModalBuyCard = ({ openCardState, closeBuyCard, buyCard }) => {
     </Portal>
   );
 };
-// {
-//   label: "Bank Card Number",
-//   name: "bankCard",
-//   pattern: /\b[3-6]\d{3}[ \-_.]?(\d{4}[ \-_.]?){2}\d{4}\b/gi,
-//   width: "200px",
-// },
-// {
-//   label: "Expiration Code",
-//   name: "expirationDay",
-//   pattern: /(0[1-9]|1[0-2])/gi,
-//   width: "45px",
-// },
-// {
-//   label: "",
-//   name: "expirationMonth",
-//   pattern: /([0-9]{4}|[0-9]{2})/gi,
-//   width: "45px",
-// },
+export default ModalBuyCard

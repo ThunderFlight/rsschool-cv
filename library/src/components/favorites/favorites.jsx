@@ -1,16 +1,37 @@
-import classNames from "classnames";
-import { useEffect, useState } from "react";
-import CustomButton from "../common/customButton/customButton";
-import { H2Title } from "../common/h2Title/h2Title";
+import { useState } from "react";
+import { Title } from "../common/title/title";
 import styles from "./favorites.module.scss";
-import { useAppContext } from "../../contexts/useAppContext";
-import { ModalBuyCard } from "../common/modal/modalBuyCard/modalBuyCard";
-import ModalLogin from "../common/modal/modalLogIn/modalLogin";
+import { useAppContext } from "../../hooks/useAppContext";
+import ModalBuyCard from "../common/modals/modalBuyCard/modalBuyCard";
+import { ModalRegister } from "../common/modals/modalRegister/modalRegister";
+import ModalLogin from "../common/modals/modalLogIn/modalLogin";
+import CardBook from "../common/cardBook/cardBook";
+import useBoolean from "../../hooks/useBoolean";
+import { FormInput } from "../common/formInput/formInput";
 
 export const Favorites = ({ data }) => {
   const [check, setCheck] = useState("winter");
-  const [isFavoritesLogin, setFavoritesLogin] = useState(false);
-  const [isBuyCard, setBuyCard] = useState(false);
+  const {
+    value: isFavoritesLogin,
+    setTrue: setFavoritesLoginTrue,
+    setFalse: setFavoritesLoginFalse,
+  } = useBoolean();
+  const {
+    value: isBuyCard,
+    setTrue: setBuyCardTrue,
+    setFalse: setBuyCardFalse,
+  } = useBoolean();
+  const {
+    value: isFavoritesRegister,
+    setTrue: setFavoritesRegisterTrue,
+    setFalse: setFavoritesRegisterFalse,
+  } = useBoolean();
+  const {
+    value: isAnimation,
+    setTrue: setAnimationTrue,
+    setFalse: setAnimationFalse,
+  } = useBoolean();
+
   const {
     currentUser,
     setCurrentUser,
@@ -21,137 +42,98 @@ export const Favorites = ({ data }) => {
   } = useAppContext();
 
   const checkRadioBtn = (e) => {
-    setCheck(e.target.value);
+    setAnimationTrue();
+    setTimeout(() => {
+      setAnimationFalse();
+      setCheck(e.target.value);
+    }, 1000);
   };
-
+  
+  const radioButtonPagination = [
+    {
+      type: "radio",
+      id: "Winter",
+      name: "seasons",
+      value: "winter",
+      checked: check,
+      label:"Winter",
+    },
+    {
+      type: "radio",
+      id: "Spring",
+      name: "seasons",
+      value: "spring",
+      checked: check,
+      label:"Spring",
+    },
+    {
+      type: "radio",
+      id: "Summer",
+      name: "seasons",
+      value: "summer",
+      checked: check,
+      label:"Summer",
+    },
+    {
+      type: "radio",
+      id: "Autumn",
+      name: "seasons",
+      value: "autumn",
+      checked: check,
+      label:"Autumn",
+    },
+  ];
   const openLogIn = () => {
-    setFavoritesLogin(true);
-  };
-  const closeLogIn = () => {
-    setFavoritesLogin(false);
+    setFavoritesLoginTrue();
+    setFavoritesRegisterFalse();
   };
 
-  const openBuyCard = () => {
-    setBuyCard(true);
+  const openRegister = () => {
+    setFavoritesLoginFalse();
+    setFavoritesRegisterTrue();
   };
 
-  const closeBuyCard = () => {
-    setBuyCard(false);
+  const findBook = (book) => {
+    if (currentUser === null || currentUser.rentedBooks.length === 0) {
+      return false;
+    }
+    return currentUser.rentedBooks.find((item) => item.book === book.name);
   };
-
   const buyCard = () => {
     const updatedCurrentUser = {
       ...currentUser,
-      rentedBooks: [...currentUser.rentedBooks, dataBook.name],
+      rentedBooks: [
+        ...currentUser.rentedBooks,
+        { book: dataBook.name, author: dataBook.author },
+      ],
     };
     setCurrentUser(updatedCurrentUser);
     setUsers(users.filter((item) => item.email !== currentUser.email));
     setUsers((prev) => [...prev, updatedCurrentUser]);
   };
-  console.log(currentUser.rentedBooks);
   return (
     <section className={styles.favorites} id="favorites">
-      <H2Title>Favorites</H2Title>
+      <Title>Favorites</Title>
       <div className={styles.seasonBooks}>
-        <p>Pick favorites of season</p>
+        <p className={styles.seasonBooks__title}>Pick favorites of season</p>
         <span className={styles.seasonBooks__pagination}>
-          <input
-            type="radio"
-            id="Winter"
-            name="seasons"
-            value={"winter"}
-            onChange={checkRadioBtn}
-            checked={check === "winter" ? true : false}
-          />
-          <label htmlFor="Winter">Winter</label>
-          <input
-            type="radio"
-            id="Spring"
-            name="seasons"
-            value={"spring"}
-            onChange={checkRadioBtn}
-            checked={check === "spring" ? true : false}
-          />
-          <label htmlFor="Spring">Spring</label>
-          <input
-            type="radio"
-            id="Summer"
-            name="seasons"
-            value={"summer"}
-            onChange={checkRadioBtn}
-            checked={check === "summer" ? true : false}
-          />
-          <label htmlFor="Summer">Summer</label>
-          <input
-            type="radio"
-            id="Autumn"
-            name="seasons"
-            value={"autumn"}
-            onChange={checkRadioBtn}
-            checked={check === "autumn" ? true : false}
-          />
-          <label htmlFor="Autumn">Autumn</label>
+          {radioButtonPagination.map((item,index) => {
+            return <FormInput key={index + 1} label={item.label} id={item.id} checked={check} name={item.name} type={item.type} value={item.value} onChange={checkRadioBtn}/>
+          })}
         </span>
         <div className={styles.seasonBooks__preViewBooks}>
-          {data.map((item) => {
-            for (let key in item) {
-              if (check === key) {
-                return item[key].map((book, id) => {
-                  return (
-                    <div key={id}>
-                      <div className={styles.cover}>
-                        <h3 className={styles.cover__from}>{book.from}</h3>
-                        <div className={styles.cover__lineGold}></div>
-                        <h4
-                          className={classNames(
-                            styles.nameAndAuthor,
-                            styles.cover__name
-                          )}
-                        >
-                          {book.name}
-                        </h4>
-                        <h4
-                          className={classNames(
-                            styles.nameAndAuthor,
-                            styles.cover__author
-                          )}
-                        >
-                          {book.author}
-                        </h4>
-                        <p className={styles.cover__description}>
-                          {book.description}
-                        </p>
-                          {currentUser.rentedBooks.map((item) => {
-                              return item === book.name ? (
-                                <CustomButton
-                                  className="ownCardButton"
-                                  type="submit"
-                                >
-                                  Own
-                                </CustomButton>
-                              ) : (
-                                <CustomButton
-                                  className="bookBtn"
-                                  onClick={() => {
-                                    currentUser !== null
-                                      ? (openBuyCard(), setDataBook(book))
-                                      : openLogIn();
-                                  }}
-                                >
-                                  Buy
-                                </CustomButton>
-                              );
-                            })}
-                        <img src={book.src} className={styles.cover__image} />
-                      </div>
-                    </div>
-                  );
-                });
-              }
-            }
-          })}
+          <CardBook
+            data={data}
+            openBuyCard={setBuyCardTrue}
+            isAnimation={isAnimation}
+            setDataBook={setDataBook}
+            findBook={findBook}
+            check={check}
+            currentUser={currentUser}
+            openLogIn={openLogIn}
+          />
           <ModalBuyCard
-            closeBuyCard={closeBuyCard}
+            closeBuyCard={setBuyCardFalse}
             openCardState={isBuyCard}
             dataBook={dataBook}
             buyCard={buyCard}
@@ -160,7 +142,15 @@ export const Favorites = ({ data }) => {
             wrap="wrapDigit"
             wrapPos="modalLogInWrapCenter"
             openState={isFavoritesLogin}
-            closeLogIn={() => closeLogIn()}
+            closeLogIn={setFavoritesLoginFalse}
+            openModalYouDontHaveAccout={openRegister}
+          />
+          <ModalRegister
+            regWrap="digitRegWrap"
+            regWrapPos="modalLogInWrapCenter"
+            openRegState={isFavoritesRegister}
+            openLogIn={openLogIn}
+            closeModalRegister={setFavoritesRegisterFalse}
           />
         </div>
       </div>

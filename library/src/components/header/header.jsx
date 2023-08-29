@@ -3,90 +3,97 @@ import React, { memo, useState } from "react";
 import burger from "../../../public/images/burger.svg";
 import burgerCross from "../../../public/images/burgerСross.svg";
 import profileIcon from "../../../public/images/icon_profile.svg";
-import { useAppContext } from "../../contexts/useAppContext";
-import  ModalLogin  from "../common/modal/modalLogIn/modalLogin";
-import { ModalProfileNoAuth } from "../common/modal/modalProfileNoAuth/modalProfileNoAuth";
-import { ModalRegister } from "../common/modal/modalRegister/modalRegister";
+import { useAppContext } from "../../hooks/useAppContext";
+import ModalLogin from "../common/modals/modalLogIn/modalLogin";
+import { ModalProfileNoAuth } from "../common/modals/modalProfileNoAuth/modalProfileNoAuth";
+import { ModalRegister } from "../common/modals/modalRegister/modalRegister";
 import styles from "./header.module.scss";
-import { ModalProfile } from "../common/modal/modalProfile/modalProfile";
+import { ModalProfile } from "../common/modals/modalProfile/modalProfile";
+import useBoolean from "../../hooks/useBoolean";
 
-export const Header = memo(({ headerWith }) => {
-  const [isOpenBurger, setOpenBurger] = useState(false);
-  const [isOpenNoAuth, setOpenNoAuth] = useState(false);
-  const [isOpenLogin, setOpenLogin] = useState(false);
-  const [isOpenRegister, setOpenRegister] = useState(false);
-  const [isOpenAuth, setOpenAuth] = useState(false);
-  const [isOpenProfile, setOpenProfile] = useState(false);
+export const Header = memo(({ headerWidth }) => {
   const { currentUser, logOut } = useAppContext();
 
+  const {value: isBurger, setFalse: setBurgerFalse, setValue: setBurgerPrev}=useBoolean()
+  const burgerPrev = () => setBurgerPrev((prev)=>!prev)
+  
+  const {value: isDropMenuNoAuth, setFalse: setDropMenuNoAuthFalse, setValue: setDropMenuNoAuthPrev}=useBoolean()
+  const dropMenuNoAuthPrev = () => setDropMenuNoAuthPrev((prev)=>!prev)
+  
+  const {value: isDropMenuAuth, setFalse: setDropMenuAuthFalse, setValue: setDropMenuAuthPrev}=useBoolean()
+  const dropMenuAuthPrev = () => setDropMenuAuthPrev((prev)=>!prev)
+
+  const {value: isLogin, setFalse: setLoginFalse, setTrue: setLoginTrue, setValue: setLoginPrev}=useBoolean()
+  const loginPrev = () => setLoginPrev((prev)=>!prev)
+  
+  const {value: isRegister, setFalse: setRegisterFalse, setTrue: setRegisterTrue }=useBoolean()
+
+  const {value: isProfile, setFalse: setProfileFalse, setTrue: setProfileTrue }=useBoolean()
+
+  const {value: isCopied, setFalse: setCopiedFalse, setTrue: setCopiedTrue }=useBoolean()
+
   const openModalBurger = () => {
-    setOpenBurger((prev) => !prev);
-    setOpenRegister(false);
-    setOpenProfile(false);
-    setOpenAuth(false);
-    setOpenNoAuth(false);
-    setOpenLogin(false);
+    burgerPrev()
+    setRegisterFalse()
+    setProfileFalse()
+    setDropMenuAuthFalse()
+    setDropMenuNoAuthFalse()
+    setLoginFalse()
   };
 
   const openModalNoAuth = () => {
-    setOpenNoAuth((prev) => !prev);
-    setOpenBurger(false);
-    setOpenBurger(false);
+    dropMenuNoAuthPrev()
+    setBurgerFalse()
+    setBurgerFalse();
   };
 
   const openModalLogIn = () => {
-    setOpenLogin((prev) => !prev);
-    setOpenNoAuth(false);
-    setOpenBurger(false);
+    loginPrev()
+    setDropMenuNoAuthFalse()
+    setBurgerFalse();
   };
 
   const openModalYouDontHaveAccout = () => {
-    setOpenLogin(false);
-    setOpenRegister(true);
-    setOpenBurger(false);
+    setLoginFalse()
+    setRegisterTrue()
+    setBurgerFalse();
   };
 
   const openModalYouHaveAccount = () => {
-    setOpenLogin(true);
-    setOpenRegister(false);
-    setOpenBurger(false);
+    setLoginTrue();
+    setRegisterFalse()
+    setBurgerFalse();
   };
 
   const openModalRegister = () => {
-    setOpenRegister(true);
-    setOpenNoAuth(false);
-    setOpenBurger(false);
-  };
-
-  const closeModalRegister = () => {
-    setOpenRegister(false);
-  };
-
-  const closeLogIn = () => {
-    setOpenLogin(false);
+    setRegisterTrue()
+    setDropMenuNoAuthFalse()
+    setBurgerFalse();
   };
 
   const openModalAuth = () => {
-    setOpenAuth((prev) => !prev);
-    setOpenBurger(false);
-  };
-  const closeModalAuth = () => {
-    setOpenAuth(false);
-  };
-  const openModalProfile = () => {
-    setOpenProfile(true);
-    setOpenAuth(false);
-    setOpenBurger(false);
+    dropMenuAuthPrev()
+    setBurgerFalse();
   };
 
-  const closeModalProfile = () => {
-    setOpenProfile(false);
+  const openModalProfile = () => {
+    setProfileTrue()
+    setDropMenuAuthFalse()
+    setBurgerFalse();
   };
 
   const handleLogOut = () => {
     logOut();
-    closeModalAuth();
+    setDropMenuAuthFalse()
   };
+  
+  const copyCardNumber = () => {
+    setCopiedTrue();
+    navigator.clipboard.writeText(currentUser.cardNumber);
+    setTimeout(()=>{
+      setCopiedFalse();
+    },1000)
+  }
 
   return (
     <header className={styles.header}>
@@ -97,8 +104,8 @@ export const Header = memo(({ headerWith }) => {
         <nav className={styles.headerWrapper__nav}>
           <ul
             className={classNames(
-              headerWith
-                ? isOpenBurger
+              headerWidth
+                ? isBurger
                   ? styles.list
                   : styles.closeList
                 : styles.list
@@ -136,14 +143,14 @@ export const Header = memo(({ headerWith }) => {
               className={styles.noAvatar}
             />
           )}
-          {headerWith && (
+          {headerWidth && (
             <img
-              src={isOpenBurger ? burgerCross : burger}
+              src={isBurger ? burgerCross : burger}
               className={styles.burgerImg}
               onClick={openModalBurger}
             />
           )}
-          <ModalProfileNoAuth isOpenNoAuth={!currentUser ? isOpenNoAuth : isOpenAuth}>
+          <ModalProfileNoAuth isOpenNoAuth={!currentUser ? isDropMenuNoAuth : isDropMenuAuth}>
             {!currentUser ? (
               <>
                 <button onClick={openModalLogIn}>Log In</button>
@@ -159,22 +166,24 @@ export const Header = memo(({ headerWith }) => {
           <ModalLogin
             wrap="wrapHeader"
             wrapPos="modalLogInWrap"
-            openState={isOpenLogin}
+            openState={isLogin}
             openModalYouDontHaveAccout={openModalYouDontHaveAccout}
-            closeLogIn={closeLogIn}
+            closeLogIn={setLoginFalse}
           />
           <ModalRegister
             regWrap="headerRegWrap"
             regWrapPos="modalRegisterWrap"
-            openRegState={isOpenRegister}
+            openRegState={isRegister}
             openModalYouHaveAccount={openModalYouHaveAccount}
-            closeModalRegister={closeModalRegister}
+            closeModalRegister={setRegisterFalse}
           />
 
           <ModalProfile
             wrapProfile="wrapHeaderMyProfile"
-            openProfile={isOpenProfile}
-            closeModalProfile={closeModalProfile}
+            openProfile={isProfile}
+            closeModalProfile={setProfileFalse}
+            copyCardNumber={copyCardNumber}
+            isCopied={isCopied}
           />
         </nav>
       </div>

@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react";
 import { Context } from "./context";
-import { useLocalStorage } from "./useLocalStorage";
-
+import useLocalStorage from "../hooks/useLocalStorage"
 export const Provider = function ({ children }) {
 
   const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);

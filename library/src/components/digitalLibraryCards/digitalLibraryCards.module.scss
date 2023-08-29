@@ -72,7 +72,31 @@
             font-family: Forum;
             margin-bottom: 20px;
           }
+          
         }
+        .profileStats{
+            list-style: none;
+            overflow:visible;
+            @include flex-row(space-between,center);
+            width:237px;
+            &__elements{
+              @include flex-col(center,center);
+              .elementTitle{
+                @include text(10px, 400, $BLACK);
+                margin-bottom: 2px;
+                font-family: Inter;
+                line-height: 20px;
+                letter-spacing: 0.4px;
+              }
+              .elementStatNumber{
+                margin-top: 2px;
+                @include text(10px, 400, $BLACK);
+                font-family: Inter;
+                line-height: 20px;
+                letter-spacing: 0.2px;
+              }
+            }
+          }
       }
     }
     .rightSide {

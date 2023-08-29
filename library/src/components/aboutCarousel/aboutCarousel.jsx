@@ -5,80 +5,90 @@ import OutDoor from "../../../public/images/sliderLibraryOutDoor.jpg";
 import Stairs from "../../../public/images/sliderStairsLibrary.jpg";
 import Statue from "../../../public/images/sliderStatue.jpg";
 import Woman from "../../../public/images/sliderWomanInLibrary.jpg";
-import { H2Title } from "../common/h2Title/h2Title";
+import { Title } from "../common/title/title";
 import styles from "./aboutCarousel.module.scss";
-export const AboutCarousel = ({ carouselWith }) => {
+import { FormInput } from "../common/formInput/formInput";
+
+
+const carouselItems = [Woman, Statue, Library, Stairs, OutDoor];
+
+export const AboutCarousel = ({ carouselWidth }) => {
   const [checked, setChecked] = useState(1);
-  function changeCheckBox(e) {
-    setChecked(Number(e.target.value));
+
+  function changeCheckBox({target}) {
+    setChecked(Number(target.value));
   }
-  let arr = [Woman, Statue, Library, Stairs, OutDoor];
+
+  const radioButtonAttributes = [
+    {
+      type:"radio",
+      id:"first",
+      name:"pagination",
+      checked:checked,
+      onChange:changeCheckBox,
+      value:1,
+      label:""
+    },
+    {
+      type:"radio",
+      id:"second",
+      name:"pagination",
+      checked:checked,
+      onChange:changeCheckBox,
+      value:2,
+      label:""
+    },
+    {
+      type:"radio",
+      id:"third",
+      name:"pagination",
+      checked:checked,
+      onChange:changeCheckBox,
+      value:3,
+      label:""
+    },
+    {
+      type:"radio",
+      id:"four",
+      name:"pagination",
+      checked:checked,
+      onChange:changeCheckBox,
+      value:4,
+      label:""
+    },
+    {
+      type:"radio",
+      id:"fives",
+      name:"pagination",
+      checked:checked,
+      onChange:changeCheckBox,
+      value:5,
+      label:""
+    },
+  ]
+  
+  
   return (
     <section className={styles.aboutCarousel} id="carousel">
-      <H2Title>About</H2Title>
+      <Title>About</Title>
       <p className={styles.aboutCarousel__aboutLibrary}>
         The Brooklyn Library is a free workspace, a large number of books and a
         cozy coffee shop inside
       </p>
       <div className={styles.aboutCarousel__carouselSlider}>
         <div className={styles.slide}>
-          {arr
-            .slice(checked - 1, carouselWith ? checked + 0 : checked + 2)
-            .map((item, id) => {
-              return <img src={item} key={id} />;
+          {carouselItems
+            .slice(checked - 1, carouselWidth ? checked + 0 : checked + 2)
+            .map((item, index) => {
+              return <img src={item} key={index + 1} />;
             })}
         </div>
         <div className={styles.pagination}>
-          <input
-            type="radio"
-            id="first"
-            name="pagination"
-            checked={checked === 1 ? true : false}
-            onChange={changeCheckBox}
-            value={1}
-          />
-          <label htmlFor="first" />
-          <input
-            type="radio"
-            id="second"
-            name="pagination"
-            checked={checked === 2 ? true : false}
-            onChange={changeCheckBox}
-            value={2}
-          />
-          <label htmlFor="second" />
-          <input
-            type="radio"
-            id="third"
-            name="pagination"
-            checked={checked === 3 ? true : false}
-            onChange={changeCheckBox}
-            value={3}
-          />
-          <label htmlFor="third" />
-          <div
-            className={classNames(
-              carouselWith ? styles.tabletTrue : styles.tabletFalse
-            )}>
-            <input
-              type="radio"
-              id="four"
-              name="pagination"
-              checked={checked === 4 ? true : false}
-              onChange={changeCheckBox}
-              value={4}
-            />
-            <label htmlFor="four" />
-            <input
-              type="radio"
-              id="fives"
-              name="pagination"
-              checked={checked === 5 ? true : false}
-              onChange={changeCheckBox}
-              value={5}
-            />
-            <label htmlFor="fives" />
-          </div>
+          {carouselWidth ? radioButtonAttributes.map((item, index)=>{
+            return  <FormInput label={item.label} key={index + 1} type={item.type} id={item.id} name={item.name} checked={item.checked} onChange={item.onChange} value={item.value}/>
+          }): radioButtonAttributes.slice(0,3).map((item, index)=>{
+            return  <FormInput label={item.label} key={index + 1} type={item.type} id={item.id} name={item.name} checked={item.checked} onChange={item.onChange} value={item.value}/>
+          })}
         </div>
       </div>
     </section>
