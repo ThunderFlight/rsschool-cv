@@ -20,7 +20,7 @@
     @include flex-row(start);
     &__left {
       background-color: $BLACK;
-      width: 170px;
+      padding: 0px 25px 0px 25px;
       height: 100%;
       @include flex-col(center, center);
       .profileAvatar {

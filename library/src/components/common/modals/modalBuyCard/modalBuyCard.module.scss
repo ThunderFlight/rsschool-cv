@@ -16,11 +16,12 @@
   .wrapperBuyCard{
       display: block;
       background-color: $WHITE;
-      z-index: 2;
+      z-index: 10;
       position: fixed;
       width: 650px;
       top: 20%;
       right: 33%;
+      margin: 0 auto;
       &__title {
         padding: 20px 0px 20px 0px;
         background-color: $BLACK;
@@ -48,7 +49,7 @@
           @include flex-row(space-around,start);
       }
       .formBuy{
-          p{
+          .required{
             @include text(10px, 400, red);
             font-family: Inter;
             margin: 0px;

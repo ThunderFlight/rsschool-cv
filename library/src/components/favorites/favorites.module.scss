@@ -9,6 +9,7 @@
     @include flex-col(center, center);
   }
   .seasonBooks {
+    position: relative;
     &__title {
       @include text(20px, 700, $BLACK);
       font-family: Inter;
@@ -28,7 +29,16 @@
       padding-top: 35px;
     }
     &__pagination {
+      
+      @include media($SCREEN_DESKTOP){
+        position:static;
+      }
       @include flex-row(flex-start,center);
+      position: sticky;
+      top: 0px;
+      left: 0px;
+      z-index: 3;
+      // background: rgba(142, 142, 142, 0.5);
     }
     &__pagination label {
       @include text(20px, 400, $BLACK);

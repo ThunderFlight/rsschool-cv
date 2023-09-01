@@ -7,9 +7,10 @@ import { ModalRegister } from "../common/modals/modalRegister/modalRegister";
 import { ModalProfile } from "../common/modals/modalProfile/modalProfile";
 import { useForm } from "react-hook-form";
 import useBoolean from "../../hooks/useBoolean";
+import { useEffect, useState } from "react";
 
 export const DigitalLibraryCards = () => {
-
+  const [checkCardData, setCheckCardData]= useState([])
   const {value:isDigitalProfile, setTrue:setDigitalProfileTrue, setFalse:setDigitalProfileFalse}=useBoolean()
   const {value:isDigitalRegister, setTrue:setDigitalRegisterTrue, setFalse:setDigitalRegisterFalse}=useBoolean()
   const {value:isDigitalLogin, setTrue:setDigitalLoginTrue, setFalse:setDigitalLoginFalse}=useBoolean()
@@ -20,7 +21,9 @@ export const DigitalLibraryCards = () => {
     users,
     currentUser
   } = useAppContext();
-
+  useEffect(()=>{
+    currentUser ? setDigitValuesTrue(): setDigitValuesFalse()
+  },[currentUser])
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: "",
@@ -38,6 +41,7 @@ export const DigitalLibraryCards = () => {
         sliceFullName[1] === item.lastName
       ) {
         setDigitValuesTrue()
+        setCheckCardData([item.visits,item.rentedBooks.length])
       }
     })
     setTimeout(() => {
@@ -101,7 +105,7 @@ export const DigitalLibraryCards = () => {
                   />
                 </svg>{" "}
                 <p className={styles.elementStatNumber}>
-                  {currentUser !== null && currentUser.visits}
+                  {currentUser ? currentUser.visits : checkCardData[0]}
                 </p>
               </li>
               <li className={styles.profileStats__elements}>
@@ -134,7 +138,7 @@ export const DigitalLibraryCards = () => {
                   <rect x="1" width="1" height="21" fill="white" />
                 </svg>
                 <p className={styles.elementStatNumber}>
-                  {currentUser !== null && currentUser.rentedBooks.length}
+                  {currentUser ? currentUser.rentedBooks.length : checkCardData[1]}
                 </p>
               </li>
             </ul>

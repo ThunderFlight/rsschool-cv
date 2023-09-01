@@ -6,12 +6,14 @@ import { useForm } from "react-hook-form";
 import { FormInput } from "../../formInput/formInput";
 import { Portal } from "../../../../contexts/Portal";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRef } from "react";
 import * as yup from "yup";
 import styles from "./modalLogin.module.scss";
 
 const loginSchema = yup.object().shape({
-  email: yup.string().required("email is required"),
-  password: yup.string().required("password is required"),
+  email: yup.string().required("email is required").matches(/[A-z,0-9]+@[a-z]+.[a-z]+/, 'Email can containt only numbers or letters @ domain'),
+  password: yup.string().required("password is required").min(8, 'Password is too short - should be 8 chars.')
+  .matches(/(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8}/, 'Password must have Minimum one LowerCase, one UpperCase letter and one number.'),
 });
 
 const inputPropsList = [
@@ -19,14 +21,14 @@ const inputPropsList = [
     type:"text",
     label: "E-mail",
     name: "email",
-    pattern: /[A-z,0-9]+@[a-z]+\.[a-z]+/gi,
+    pattern: "[A-z,0-9]+@[a-z]+\.[a-z]+",
     id: 1,
   },
   {
     type:"text",
     label: "Password",
     name: "password",
-    pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}/gi,
+    pattern: "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}",
     id: 2,
   },
 ];
@@ -64,6 +66,14 @@ const ModalLogin = ({
       }
     })
   };
+
+  const ref=useRef()
+
+  const checkIfClickedOutside = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      closeLogIn()
+    }
+  }
   
   return (
     <Portal htmlLink="nav">
@@ -73,10 +83,12 @@ const ModalLogin = ({
             ? classNames(styles[wrapPos], styles[wrap])
             : styles.modalLogInWrapClose
         }
+        onClick={checkIfClickedOutside}
       >
         <form
           className={styles.regandlogform}
           onSubmit={handleSubmit(loginForm)}
+          ref={ref}
         >
           <h3 className={styles.regandlogform__title}>LOGIN</h3>
           <img src={close} onClick={closeLogIn} />
@@ -91,6 +103,7 @@ const ModalLogin = ({
                   label={item.label}
                   errors={errors}
                   type={item.type}
+                  styles={styles}
                 />
               );
             })}

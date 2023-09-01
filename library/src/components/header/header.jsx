@@ -129,13 +129,17 @@ export const Header = memo(({ headerWidth }) => {
             <div className={styles.dot}></div>
           </ul>
           {currentUser ? (
-            <div
-              onClick={() => openModalAuth()}
-              className={styles.headerWrapper__avatar}
-            >
-              {currentUser.firstName.slice(0, 1).toUpperCase()}
-              {currentUser.lastName.slice(0, 1).toUpperCase()}
-            </div>
+            <>
+              <div
+                onClick={() => openModalAuth()}
+                className={styles.headerWrapper__avatar}
+                title={currentUser.firstName + " " + currentUser.lastName}
+              >
+                {currentUser.firstName.slice(0, 1).toUpperCase()}
+                {currentUser.lastName.slice(0, 1).toUpperCase()}
+              </div>
+              
+            </>
           ) : (
             <img
               src={profileIcon}

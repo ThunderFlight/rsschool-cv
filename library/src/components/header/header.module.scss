@@ -19,6 +19,7 @@
     line-height: 50px;
     letter-spacing: 0.6px;
   }
+  
   &__avatar {
     width: 28px;
     height: 28px;
@@ -32,6 +33,10 @@
     @include media($SCREEN_DESKTOP) {
       margin: 0px;
     }
+    
+    // &__avtarTitle{
+    //   display: none;
+    // }
   }
   &__nav {
     @include flex-row(center, center);

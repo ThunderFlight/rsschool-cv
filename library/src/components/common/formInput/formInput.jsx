@@ -12,6 +12,8 @@ export const FormInput = ({
   value,
   onChange,
   checked,
+  styles,
+  maxLength
 }) => {
   return (
     <>
@@ -21,9 +23,13 @@ export const FormInput = ({
           <input
             style={{ width: width }}
             id={id}
-            {...register(name, { pattern })}
+            pattern={pattern}
+            maxLength={maxLength}
+            {...register(name)}
           />
-          {errors.name && <p>{errors.name.message}</p>}
+          {(errors && errors[name])&&(
+            <p className={styles.required}>{errors[name]['message']}</p>
+          )}
         </>
       ) : (
         <>

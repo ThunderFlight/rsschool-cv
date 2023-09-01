@@ -35,7 +35,7 @@ function App() {
       <Header headerWidth={carousel} />
       <main style={styles.main}>
         <WelcomeBanner />
-        <AboutCarousel carouselWidth={carousel} />
+        <AboutCarousel isCarouselWidth={carousel} width={width}/>
         <Favorites data={booksData} />
         <CoffeShop />
         <Contacts />

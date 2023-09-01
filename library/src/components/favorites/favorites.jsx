@@ -49,6 +49,8 @@ export const Favorites = ({ data }) => {
     }, 1000);
   };
   
+  
+
   const radioButtonPagination = [
     {
       type: "radio",

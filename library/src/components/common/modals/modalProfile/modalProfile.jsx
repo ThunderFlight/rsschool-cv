@@ -1,10 +1,10 @@
-import styles from "./modalProfile.module.scss";
 import { useAppContext } from "../../../../hooks/useAppContext";
 import classNames from "classnames";
 import close from "../../../../../public/images/close_btn.svg";
 import { Portal } from "../../../../contexts/Portal";
 import Check from "../../Check/check";
-import {color} from "@primer/primitives"
+import { useRef } from "react";
+import styles from "./modalProfile.module.scss";
 
 export const ModalProfile = ({
   wrapProfile,
@@ -15,14 +15,23 @@ export const ModalProfile = ({
 }) => {
   const { currentUser } = useAppContext();
 
+  const ref=useRef()
+
+  const checkIfClickedOutside = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      closeModalProfile()
+    }
+  }
+  
   return (
     <Portal htmlLink="nav">
       <div
         className={classNames(
           openProfile ? styles[wrapProfile] : styles.myProfileClose
         )}
+        onClick={checkIfClickedOutside}
       >
-        <div className={styles.myProfile}>
+        <div className={styles.myProfile} ref={ref}>
           <div className={styles.myProfile__left}>
             <div className={styles.profileAvatar}>
               <p className={styles.profileAvatar__firstLetter}>

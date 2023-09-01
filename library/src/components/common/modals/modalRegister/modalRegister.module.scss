@@ -41,13 +41,13 @@
       cursor: pointer;
     }
     &__form {
-      .validFirstName:valid {
-        border: 1px solid green;
-      }
-      .invalidFirstName:invalid:focus {
-        outline: 0;
-        border: 1px solid red;
-      }
+      .required{
+        @include text(10px, 400, red);
+        font-family: Inter;
+        margin: 0px;
+        padding: 0px;
+      
+    }
       @include flex-col(start, start);
       label {
         @include text(15px, 400, $BLACK);
@@ -115,13 +115,13 @@
       cursor: pointer;
     }
     &__form {
-      .validFirstName:valid {
-        border: 1px solid green;
-      }
-      .invalidFirstName:invalid:focus {
-        outline: 0;
-        border: 1px solid red;
-      }
+      .required{
+        @include text(10px, 400, red);
+        font-family: Inter;
+        margin: 0px;
+        padding: 0px;
+      
+    }
       @include flex-col(start, start);
       label {
         @include text(15px, 400, $BLACK);
