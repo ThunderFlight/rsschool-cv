@@ -68,7 +68,6 @@ export const AboutCarousel = ({ isCarouselWidth, width }) => {
 
 
   useEffect(() => {
-    console.log("l");
     if (isCarouselWidth) {
       switch (checked) {
         case 1:
@@ -124,7 +123,6 @@ export const AboutCarousel = ({ isCarouselWidth, width }) => {
   const nextImage = () => {
    if(checked <= 4){
       setChecked((prev) => (prev += 1));
-      console.log("fuck");
     }
     
   };

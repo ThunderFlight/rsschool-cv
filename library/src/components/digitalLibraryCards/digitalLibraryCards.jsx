@@ -68,21 +68,37 @@ export const DigitalLibraryCards = () => {
             onSubmit={handleSubmit((cardData)=>digitSubmit(cardData))}
           >
             <div className={styles.innerBlock}>
-              <p>Brooklyn Public Library</p>
-              <input
-                {...register("name", { 
-                  required: true, 
-                  pattern: /[A-z]+/gi 
-                })}
-                placeholder="Reader's name"
-              />
-              <input
-                {...register("cardNumber", {
-                  required: true,
-                  pattern: /[A-z,0-9]+/gi,
-                })}
-                placeholder="Card number"
-              />
+              <p className={styles.innerBlock__titleCheckCard}>Brooklyn Public Library</p>
+              {currentUser === null ?(
+                  <>
+                  <input
+                    {...register("name", { 
+                      required: true, 
+                      pattern: /[A-z]+/gi 
+                    })}
+                    placeholder="Reader's name"
+                    className={styles.innerBlock__input}
+                  />
+                  <input
+                    {...register("cardNumber", {
+                      required: true,
+                      pattern: /[A-z,0-9]+/gi,
+                    })}
+                    placeholder="Card number"
+                    className={styles.innerBlock__input}
+                  />
+                </> 
+                ):(
+                  <>
+                    <div className={styles.innerBlock__input}>
+                      <p className={styles.innerP}>{currentUser.firstName}</p>
+                    </div>
+                    <div className={styles.innerBlock__input}>
+                      <p className={styles.innerP}>{currentUser.lastName}</p>
+                    </div>
+                  </>
+                )              
+              }
             </div>
             {!isDigitValues ? (
               <CustomButton type="submit">Check the card</CustomButton>

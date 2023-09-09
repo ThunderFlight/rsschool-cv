@@ -4,7 +4,7 @@ import styles from "./contacts.module.scss";
 export const Contacts = () => {
   return (
     <section className={styles.ourContacts} id="ourContacts">
-      <Title className={styles.ourContacts__title}>Our Contacts</Title>
+      <Title>Our Contacts</Title>
       <div className={styles.ourContacts__wrapTextMap}>
         <div className={styles.textContact}>
           <h3>For All Library Inquirles:</h3>

@@ -41,7 +41,7 @@
 
           @include flex-col(start);
 
-          input {
+          &__input {
             width: 520px;
             height: 66px;
             border-radius: 10px;
@@ -53,19 +53,22 @@
             line-height: 50px;
             letter-spacing: 0.6;
             font-family: Forum;
-            color: $GOLD;
+            @include flex(start,center);
           }
-          input:last-child {
+          .innerP{
+            @include text(30px,400,$GOLD);
+          }
+          &__input:last-child {
             margin-bottom: 0px;
           }
-          input::placeholder {
+          &__input::placeholder {
             @include text(30px, 400, $GRAY);
             line-height: 50px;
             letter-spacing: 0.6;
             font-family: Forum;
             margin-left: 20px;
           }
-          p {
+           &__titleCheckCard {
             @include text(30px, 400, $BLACK);
             line-height: 50px;
             letter-spacing: 0.6px;
