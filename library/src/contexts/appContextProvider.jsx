@@ -14,6 +14,7 @@ export const Provider = function ({ children }) {
 
   const createUser = (reset, closeModalRegister, data) =>{
     setUsers((prev) => ([...prev,data]))
+    setCurrentUser(data)
     reset();
     closeModalRegister();
   }
