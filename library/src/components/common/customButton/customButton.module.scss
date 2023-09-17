@@ -1,0 +1,69 @@
+@import "../../../scss/main.scss";
+.customBtn {
+  cursor: pointer;
+  border: 1px solid $BLACK;
+  width: 242px;
+  height: 44px;
+  background-color: $WHITE;
+  @include text(20px, 700, $BLACK);
+  font-family: Inter;
+  letter-spacing: 1px;
+  text-align: center;
+  text-emphasis: none;
+  border-radius: 2px;
+  transition: 0.5s;
+  &:hover:enabled {
+    background-color: $GOLD;
+    border-color: $GOLD;
+  }
+}
+.bookBtn {
+  width: 75px;
+  height: 30px;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  cursor: pointer;
+  @include text(10px, 700, $BLACK);
+  font-family: Inter;
+  letter-spacing: 1px;
+}
+.regBtn {
+  border-radius: 2px;
+  @include text(10px, 700, $BLACK);
+  width: 75px;
+  height: 30px;
+}
+.modalBtn {
+  border-radius: 2px;
+  @include text(10px, 700, $BLACK);
+  width: 75px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.buyCardButton {
+  border-radius: 2px;
+  @include text(10px, 700, $BLACK);
+  width: 75px;
+  height: 30px;
+  margin-top: 10px;
+  margin-right: 25px;
+}
+.ownCardButton{
+  width: 75px;
+  height: 30px;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  @include text(10px, 700, $GOLD);
+  border: 1px solid $GOLD;
+  font-family: Inter;
+  letter-spacing: 1px;
+  cursor:not-allowed;
+  &:hover:enabled{
+    background-color: $WHITE;
+  }
+}

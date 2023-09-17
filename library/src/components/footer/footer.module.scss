@@ -1,0 +1,89 @@
+@import "../../scss/main.scss";
+.footer {
+  padding: 20px 20px 36px 20px;
+  width: 100%;
+  background-color: $BLACK;
+  @include flex(center, center);
+}
+.footerWrapper {
+  width: 1400px;
+  &__top {
+    margin-bottom: 30px;
+    @include flex-row(space-between, center);
+    .leftContact {
+      &__address a {
+        @include text(15px, 400, $WHITE);
+        line-height: 20px;
+        font-family: Inter;
+        text-align: start;
+        width: 230px;
+        margin-bottom: 18px;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+      }
+      &__address a:hover {
+        color: $GOLD;
+      }
+      &__socialAccounts {
+        @include flex-row(start, center);
+        a {
+          margin-right: 15px;
+          cursor: pointer;
+        }
+        a:last-child {
+          margin-right: 0px;
+        }
+        a {
+          fill: $WHITE;
+        }
+        a:hover {
+          fill: $GOLD;
+        }
+        .socialSvg {
+          fill: $WHITE;
+        }
+        .socialSvg:hover {
+          fill: $GOLD;
+        }
+      }
+    }
+    .rightSchedule {
+      p {
+        @include text(15px, 400, $WHITE);
+        line-height: 20px;
+        font-family: Inter;
+        text-align: end;
+        line-height: 20px;
+      }
+      p:nth-child(2) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  &__line {
+    width: 100%;
+    border: 1px solid $WHITE;
+    margin-bottom: 30px;
+  }
+  &__bottom {
+    @include flex-row(space-between, center);
+    p {
+      @include text(20px, 400, $WHITE);
+      font-size: 20px;
+      font-family: Inter;
+      line-height: 20px;
+      letter-spacing: 2px;
+    }
+    p:nth-child(1){
+      margin-right: 70px;
+    }
+    p a{
+      color: $WHITE;
+      text-decoration: none;
+    }
+    p:last-child {
+      line-height: 40px;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import "../../scss/main.scss";
+.coffeShop {
+  @include pX;
+  @include flex-col(center, center);
+  margin: 0 auto;
+  margin-bottom: 20px;
+  max-width: 1440px;
+  &__descriptionUp {
+    @include text(20px, 400, $BLACK);
+    line-height: 40px;
+    letter-spacing: 2px;
+
+    max-height: 200px;
+
+    max-width: 1400px;
+
+    font-family: Inter;
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  &__priceFood {
+    width: 100%;
+    @include flex-col(flex-start);
+    @include media($SCREEN_FULLHD) {
+      @include flex-row(space-between, center);
+    }
+  }
+  .leftPrice {
+    &__foodTitle {
+      @include text(40px, 400, $GOLD);
+      letter-spacing: 2px;
+      font-family: Forum;
+      margin-bottom: 40px;
+    }
+  }
+  .rightPrice {
+    &__foodTitle {
+      @include text(40px, 400, $GOLD);
+      letter-spacing: 2px;
+      font-family: Forum;
+      margin-bottom: 40px;
+      text-align: end;
+    }
+  }
+  .listFood {
+    list-style: none;
+    &__oneFood {
+      margin-bottom: 40px;
+      height: 40px;
+      p {
+        @include text(20px, 400, $BLACK);
+        font-family: Inter;
+        letter-spacing: 2px;
+        text-transform: capitalize;
+
+        width: 200px;
+      }
+      p:last-child {
+        width: 45px;
+        font-family: Forum;
+      }
+
+      div {
+        border: 1px solid $GOLD;
+        width: 100px;
+        margin: 0px 55px 0px 60px;
+      }
+    }
+    &__oneRight {
+      @include flex-row(flex-end, center);
+      text-align: end;
+      p {
+        width: 213px;
+      }
+      div {
+        margin: 0px 45px 0px 60px;
+      }
+    }
+    &__oneLeft {
+      @include flex-row(flex-start, center);
+      text-align: start;
+    }
+  }
+}

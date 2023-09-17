@@ -1,0 +1,107 @@
+@import "../../../../scss/main.scss";
+.closeGrayLayer{
+    display: none;
+}
+.grayLayer{
+  background: rgba(12, 12, 14, 0.3);
+  animation: background 1s;
+  transition: all 1s;
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  z-index: 3;
+  right: 0;
+  top: 0;
+  display: block;
+  .wrapperBuyCard{
+      display: block;
+      background-color: $WHITE;
+      z-index: 10;
+      position: fixed;
+      width: 650px;
+      top: 20%;
+      right: 33%;
+      margin: 0 auto;
+      &__title {
+        padding: 20px 0px 20px 0px;
+        background-color: $BLACK;
+        width: 100%;
+        position: relative;
+        @include flex-row(center,center);
+        .titleCard{
+          @include text(40px,400, $WHITE);
+          font-family: Forum;
+          line-height: 20px;
+          letter-spacing: 0.8px;
+          text-align: center;
+        }
+        .crossTitle{
+          width: 15px;
+          height: 15px;
+          align-items: end;
+          position: absolute;
+          right: 25px;
+          cursor: pointer;
+        }
+      }
+      &__formBuyWrapper{
+          margin: 30px 40px 30px 40px;
+          @include flex-row(space-around,start);
+      }
+      .formBuy{
+          .required{
+            @include text(10px, 400, red);
+            font-family: Inter;
+            margin: 0px;
+            padding: 0px;
+          }
+          margin-right: 40px;
+          @include flex-col(center,flex-start);
+          label{
+            @include text(15px, 400, $BLACK);
+            font-family: Inter;
+            line-height: 20px;
+            letter-spacing: 0.3px;
+            margin-bottom: 10px;
+          }
+          input{
+              border: 1px solid $GOLD;
+              height: 20px;
+              margin-bottom: 10px;
+              width: 200px;
+          }
+          .expiration{
+            @include flex-row(center,space-between);
+            &__values{
+              width: 45px;
+              margin-right: 10px;
+            }
+          }
+          .buyBook{
+            @include flex-row(center,end);
+            &__priceBook{
+              @include text(20px, 700, $BLACK);
+              font-family: Inter;
+              letter-spacing: 2px;
+            }
+          }
+      }
+      .privacy{
+        &__text{
+          @include text(15px, 400, $GRAY);
+          font-family: Inter;
+          line-height: 20px;
+          letter-spacing: 2px;
+        }
+      }
+  }
+}
+
+@keyframes background {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}

@@ -1,0 +1,16 @@
+@import "../../../scss/main.scss";
+.title {
+  @include flex-col(center, center);
+  @include text(40px, 400, $LIGHTBLACK);
+  font-family: Forum;
+  font-style: normal;
+  line-height: 40px;
+  letter-spacing: 2px;
+   
+}
+.undreLine {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border: 1px solid $LIGHTBLACK;
+  width: 50px;
+}

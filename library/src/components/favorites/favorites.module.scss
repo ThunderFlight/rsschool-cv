@@ -1,0 +1,226 @@
+@import "../../scss/main.scss";
+.favorites {
+  @include pX;
+  position: relative;
+  width: 100%;
+  max-width: 1400;
+  margin-bottom: 20px;
+  @include media($SCREEN_FULLHD_L) {
+    @include flex-col(center, center);
+  }
+  .seasonBooks {
+    position: relative;
+    &__title {
+      @include text(20px, 700, $BLACK);
+      font-family: Inter;
+      margin-bottom: 40px;
+    }
+    &__preViewBooks {
+      @include flex-col(center, center);
+
+      @include media($SCREEN_FULLHD) {
+        @include flex;
+        display: grid;
+        grid-template-columns: 550px 550px;
+        grid-column-gap: 260px;
+        flex-direction: row;
+      }
+
+      padding-top: 35px;
+    }
+    &__pagination {
+      
+      @include media($SCREEN_DESKTOP){
+        position:static;
+      }
+      @include flex-row(flex-start,center);
+      position: sticky;
+      top: 0px;
+      left: 0px;
+      z-index: 3;
+      // background: rgba(142, 142, 142, 0.5);
+    }
+    &__pagination label {
+      @include text(20px, 400, $BLACK);
+      cursor: pointer;
+      font-family: Inter;transition: all 0.2s;
+      padding-left: 10px;
+    }
+
+    &__pagination input[type="radio"]:first-child {
+      margin-left: 0px;
+      cursor: pointer;
+    }
+    &__pagination input[type="radio"] {
+      cursor: pointer;
+      position: relative;
+      height: 16px;
+      width: 16px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      outline: none;
+      padding: 20px 25px 13px 0px;
+      // margin-right: 10px;
+      margin-left: 90px;
+      transition: all 0.2s;
+    }
+
+    &__pagination input[type="radio"]::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 2px solid $BLACK;
+    }
+
+    &__pagination input[type="radio"]:checked::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      background-color: $BLACK;
+      transform: translate(-50%, -50%);
+      visibility: visible;
+    }
+    &__pagination input[type="radio"]:checked + label {
+      font-weight: bold;
+
+    }
+  }
+  
+  .cover {
+    animation: hideShow 2s;
+    transition: all 3s;
+    border: 1px solid $BLACK;
+    padding: 15px 20px 15px 20px;
+    width: 550px;
+    min-height: 555px;
+    position: relative;
+    margin-bottom: 40px;
+    &__from {
+      @include text(20px, 400, $BLACK);
+      font-family: Forum;
+      letter-spacing: 2px;
+      line-height: 40px;
+      height: 38px;
+    }
+    &__lineGold {
+      border: 1px solid $GOLD;
+      background-color: $GOLD;
+      width: 59px;
+      margin-bottom: 20px;
+    }
+
+    &__name {
+      text-transform: uppercase;
+      font-family: Inter;
+    }
+    &__author {
+      text-transform: capitalize;
+      font-family: Inter;
+      margin-bottom: 20px;
+    }
+    &__description {
+      text-transform: capitalize;
+      max-width: 355px;
+      font-family: Inter;
+      @include text(15px, 400, $BLACK);
+      line-height: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    &__image {
+      position: absolute;
+      right: -40px;
+      bottom: -1px;
+    }
+  }
+  .nameAndAuthor {
+    @include text(15px, 700, $BLACK);
+
+    line-height: 40px;
+    letter-spacing: 2px;
+  }
+}
+.coverHide{
+  animation: hide 1s;
+  transition: all 3s;
+    border: 1px solid $BLACK;
+    padding: 15px 20px 15px 20px;
+    width: 550px;
+    min-height: 555px;
+    position: relative;
+    margin-bottom: 40px;
+    &__from {
+      @include text(20px, 400, $BLACK);
+      font-family: Forum;
+      letter-spacing: 2px;
+      line-height: 40px;
+      height: 38px;
+    }
+    &__lineGold {
+      border: 1px solid $GOLD;
+      background-color: $GOLD;
+      width: 59px;
+      margin-bottom: 20px;
+    }
+
+    &__name {
+      text-transform: uppercase;
+      font-family: Inter;
+    }
+    &__author {
+      text-transform: capitalize;
+      font-family: Inter;
+      margin-bottom: 20px;
+    }
+    &__description {
+      text-transform: capitalize;
+      max-width: 355px;
+      font-family: Inter;
+      @include text(15px, 400, $BLACK);
+      line-height: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    &__image {
+      position: absolute;
+      right: -40px;
+      bottom: -1px;
+    }
+    .nameAndAuthor {
+    @include text(15px, 700, $BLACK);
+
+    line-height: 40px;
+    letter-spacing: 2px;
+  }
+}
+  
+@keyframes hide {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0.1;
+  }
+}
+@keyframes hideShow {
+  
+  0%{
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,170 @@
+@import "../../../../scss/main.scss";
+.modalLogInWrapClose {
+  display: none;
+}
+
+  .modalLogInWrap {
+    position: absolute;
+    z-index: 2;
+    right: 250px;
+    top: 70px;
+  }
+  .modalLogInWrapCenter {
+    position: fixed;
+    z-index: 2;
+    right: 55%;
+    top:40%;
+  }
+  .wrapHeader{
+  .regandlogform {
+         display: block;
+    background-color: $WHITE;
+    @include flex-col(center, center);
+    position: absolute;
+    z-index: 2;
+    padding: 20px 25px 20px 25px;
+    
+    &__title{
+      @include text(20px, 400, $BLACK);
+      font-family: Forum;
+      line-height: 20px;
+      letter-spacing: 0.4px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    img {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      cursor: pointer;
+    }
+    &__form {
+      @include flex-col(start, start);
+      label {
+        @include text(15px, 400, $BLACK);
+        letter-spacing: 0.3px;
+        line-height: 20px;
+        font-family: Inter;
+        margin-bottom: 10px;
+      }
+
+      input {
+        border: 1px solid $GOLD;
+        width: 200px;
+        height: 20px;
+        margin-bottom: 10px;
+      }
+      .required{
+          @include text(10px, 400, red);
+          font-family: Inter;
+          margin: 0px;
+          padding: 0px;
+        
+      }
+      p {
+        @include text(10px, 400, $BLACK);
+        font-family: Inter;
+        button {
+          margin-left: 10px;
+          @include text(10px, 700, $BLACK);
+          letter-spacing: 1px;
+          font-family: Inter;
+          text-decoration: underline;
+          border: 0px;
+          background-color: $WHITE;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  }
+
+.wrapDigit{
+  background: rgba(12, 12, 14, 0.3);
+  width: 100%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  animation: background 2s;
+  transition: all 2s;
+  .regandlogform {
+    display: block;
+    background-color: $WHITE;
+    @include flex-col(center, center);
+    position: absolute;
+    opacity: 1;
+    left: 44%;
+    top: 40%;
+    z-index: 3;
+    padding: 20px 25px 20px 25px;
+    h3 {
+      @include text(20px, 400, $BLACK);
+      font-family: Forum;
+      line-height: 20px;
+      letter-spacing: 0.4px;
+      margin-bottom: 20px;
+    }
+    img {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      cursor: pointer;
+    }
+    &__form {
+      .required{
+        @include text(10px, 400, red);
+        font-family: Inter;
+        margin: 0px;
+        padding: 0px;
+      
+    }
+      @include flex-col(start, start);
+      label {
+        @include text(15px, 400, $BLACK);
+        letter-spacing: 0.3px;
+        line-height: 20px;
+        font-family: Inter;
+        margin-bottom: 10px;
+      }
+
+      input {
+        border: 1px solid $GOLD;
+        width: 200px;
+        height: 20px;
+        margin-bottom: 10px;
+      }
+      p {
+        @include text(10px, 400, $BLACK);
+        font-family: Inter;
+        button {
+          margin-left: 10px;
+          @include text(10px, 700, $BLACK);
+          letter-spacing: 1px;
+          font-family: Inter;
+          border: 0px;
+          background-color: $WHITE;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@keyframes background {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundOff {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}

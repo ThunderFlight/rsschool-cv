@@ -1,0 +1,142 @@
+@import "../../scss/main.scss";
+.digitalLibraryCards {
+  @include pX;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+
+  &__wrapp {
+    @include flex-col(center, center);
+
+    @include media($SCREEN_FULLHD) {
+      @include flex-row(space-between);
+    }
+    .leftFind {
+      @include flex-col(center, center);
+      &__titleCard {
+        @include text(30px, 400, $BLACK);
+        font-family: Inter;
+        line-height: 40px;
+        letter-spacing: 0.6px;
+        margin-bottom: 23px;
+      }
+      &__borderCard {
+        @include flex-col(start, center);
+        border: 3px solid $GOLD;
+        background-color: $WHITE;
+        margin-bottom: 20px;
+        @include media($SCREEN_FULLHD) {
+          margin-bottom: 0px;
+        }
+        width: 600px;
+        height: 386px;
+
+        .innerBlock {
+          width: 560px;
+          height: 272px;
+          background-color: $GOLD;
+          margin: 20px;
+          padding: 20px 20px 25px 20px;
+
+          @include flex-col(start);
+
+          &__input {
+            width: 520px;
+            height: 66px;
+            border-radius: 10px;
+            background-color: $WHITE;
+            margin-bottom: 40px;
+            border: 0px;
+            padding-left: 20px;
+            @include text(30px, 400, $BLACK);
+            line-height: 50px;
+            letter-spacing: 0.6;
+            font-family: Forum;
+            @include flex(start,center);
+          }
+          .innerP{
+            @include text(30px,400,$GOLD);
+          }
+          &__input:last-child {
+            margin-bottom: 0px;
+          }
+          &__input::placeholder {
+            @include text(30px, 400, $GRAY);
+            line-height: 50px;
+            letter-spacing: 0.6;
+            font-family: Forum;
+            margin-left: 20px;
+          }
+           &__titleCheckCard {
+            @include text(30px, 400, $BLACK);
+            line-height: 50px;
+            letter-spacing: 0.6px;
+            font-family: Forum;
+            margin-bottom: 20px;
+          }
+          
+        }
+        .profileStats{
+            list-style: none;
+            overflow:visible;
+            @include flex-row(space-between,center);
+            width:237px;
+            &__elements{
+              @include flex-col(center,center);
+              .elementTitle{
+                @include text(10px, 400, $BLACK);
+                margin-bottom: 2px;
+                font-family: Inter;
+                line-height: 20px;
+                letter-spacing: 0.4px;
+              }
+              .elementStatNumber{
+                margin-top: 2px;
+                @include text(10px, 400, $BLACK);
+                font-family: Inter;
+                line-height: 20px;
+                letter-spacing: 0.2px;
+              }
+            }
+          }
+      }
+    }
+    .rightSide {
+      @include flex-col(center, center);
+      @include media($SCREEN_FULLHD) {
+        @include flex-col(start, end);
+      }
+      button:last-child {
+        margin-left: 20px;
+      }
+      h3,
+      p {
+        @include text(30px, 400, $BLACK);
+        letter-spacing: 0.6px;
+        text-align: center;
+        @include media($SCREEN_FULLHD) {
+          text-align: right;
+        }
+        font-family: Forum;
+        margin-bottom: 35px;
+      }
+      p {
+        font-size: 20px;
+        font-family: Inter;
+        width: 600px;
+        @include media($SCREEN_FULLHD) {
+          width: 456px;
+        }
+        letter-spacing: 0.4px;
+        line-height: 40px;
+      }
+    }
+  }
+}
+.colorYellow{
+  color: $GOLD;
+}
+.colorBlack{
+  color: $BLACK;
+}

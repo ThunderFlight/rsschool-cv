@@ -1,0 +1,139 @@
+@import "../../scss/main.scss";
+.aboutCarousel {
+  @include flex-col(center, center);
+  @include pX;
+  margin-bottom: 40px;
+  
+  width: 100%;
+  overflow: hidden;
+  &__aboutLibrary {
+    color: $BLACK;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    margin-bottom: 20px;
+    @include pX;
+  }position: relative;
+  .slideWrapper{
+    @include flex-row(center,center);
+    
+    width: 450px;
+    overflow: hidden;
+    @include media($SCREEN_DESKTOP){
+      width: 960px;
+      height: 400px;
+    }
+    @include media($SCREEN_FULLHD){
+      width: 1440px;
+      height: 560px;
+    }
+    &__arrowRight{
+      
+      @include media($SCREEN_DESKTOP){
+        display: none;
+      }
+      display: block;
+        width: 7px;
+        height: 7px;
+        border-top: 1px solid $BLACK;
+        border-right: 1px solid $BLACK;
+        transform: rotate(46deg);
+        position: absolute;
+        right: 60px;
+        top: 55%;
+        cursor: pointer;
+    }
+    &__arrowLeft{
+      @include media($SCREEN_DESKTOP){
+        display: none;
+      }
+        display: block;
+        width: 7px;
+        height: 7px;
+        border-top: 1px solid $BLACK;
+        border-right: 1px solid $BLACK;
+        transform: rotate(225deg);
+        position: absolute;
+        left: 65px;
+        top: 55%;
+        cursor: pointer;
+    }
+    &__slide {
+      transition: all 1s;
+      height: 560px;
+      overflow: hidden;
+      @include flex(start,center);
+      margin-bottom: 25px;
+      img {
+        @include media($SCREEN_DESKTOP) {
+          width: 300px;
+          height: 360px;
+          margin-right: 25px;
+        }
+        @include media($SCREEN_FULLHD) {
+          width: 450px;
+          height: 560px;
+        }
+        margin-right: 25px;
+      }
+    }
+  }
+  .pagination {
+    @include flex(center, center);
+    input {
+      display: none;
+    }
+    label {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      background-color: $LIGHTBLACK;
+      margin-right: 10px;
+      border-radius: 100%;
+      display: block;
+      transition: all 0.5s;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+    }
+    label:hover{
+      background-color:  $GOLD;
+      
+    }
+    input[type="radio"]:checked + label {
+      background-color: $GOLD;
+    }
+    .tabletTrue {
+      display: inline-block;
+      @include flex-row(space-between, center);
+    }
+    .tabletFalse {
+      display: none;
+    }
+  }
+}
+
+
+
+// .slide {
+//   margin-bottom: 20px;
+//   @include media($SCREEN_DESKTOP){
+//     margin-bottom: 40px;
+//   }
+//   img {
+//     @include media($SCREEN_DESKTOP) {
+//       width: 300px;
+//       height: 360px;
+//     }
+//     @include media($SCREEN_FULLHD) {
+//       width: 450px;
+//       height: 560px;
+//     }
+//     margin-right: 25px;
+//   }
+//   img:last-child {
+//     margin-right: 0px;
+//   }
+// }

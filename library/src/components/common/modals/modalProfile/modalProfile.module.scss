@@ -1,0 +1,263 @@
+@import "../../../../scss/main.scss";
+.myProfileClose {
+  display: none;
+}
+.wrapHeaderMyProfile{
+  .myProfile {
+    display: block;
+    background-color: $WHITE;
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    z-index: 2;
+    bottom: -420px;
+    right: 0px;
+    img {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+    }
+    @include flex-row(start);
+    &__left {
+      background-color: $BLACK;
+      padding: 0px 25px 0px 25px;
+      height: 100%;
+      @include flex-col(center, center);
+      .profileAvatar {
+        width: 80px;
+        height: 80px;
+        background-color: $WHITE;
+        margin-bottom: 20px;
+        @include flex(center,center);
+        &__firstLetter{
+          @include text(20px, 400, $GOLD);
+          font-family: Inter;
+          line-height: 20px;
+        }
+      }
+      .profileName {
+        width: 120px;
+        height: 30px;
+        background-color: $WHITE;
+        @include flex(center,center);
+        &__fullName{
+          @include text(19px, 400, $BLACK);
+          line-height: 19px;
+          font-family: Inter;
+        }
+      }
+    }
+    &__right {
+      padding: 40px 25px 40px 20px;
+      position: relative;
+      .profileStats{
+        margin-bottom: 20px;
+        list-style: none;
+        overflow:visible;
+        @include flex-row(space-between,center);
+        width:237px;
+        &__elements{
+          @include flex-col(center,center);
+          .elementTitle{
+            @include text(20px, 400, $BLACK);
+            font-family: Inter;
+            line-height: 20px;
+            letter-spacing: 0.4px;
+            margin-bottom: 10px;
+          }
+          .elementStatNumber{
+            margin-top: 10px;
+            @include text(10px, 400, $BLACK);
+            font-family: Inter;
+            line-height: 20px;
+            letter-spacing: 0.2px;
+          }
+        }
+      }
+      .cardNumber{
+        @include text(20px, 400, $BLACK);
+        font-family: Inter;
+        line-height:20px;
+        @include flex(start,center);
+        &__id{
+          @include text(20px, 400, $GOLD);
+          font-family: Inter;
+          line-height:20px;@include flex(center);
+        }
+        &__copyId{
+          background-color: $WHITE;
+          border: 0px;
+          cursor: pointer;
+        }
+      }
+      
+      h2 {
+        @include text(40px, 400, $BLACK);
+        font-family: Forum;
+        letter-spacing: 0.8px;
+        margin-bottom: 30px;
+      }
+      .rentedBook{
+        @include text(25px, 400, $BLACK);
+        font-family: Inter;
+        margin-bottom: 30px;
+      }
+      .rentedBooks {
+        overflow-y: scroll;
+        height: 65px;
+        margin-bottom: 20px;
+        list-style: circle;
+        &__book{
+          padding: 0px;
+          margin: 0px 0px 0px 20px;
+          list-style: disc;
+          margin-bottom: 10px;
+          @include text(19px, 400, $BLACK);
+          line-height: 20px;
+          letter-spacing: 2px;
+          font-family: Inter;
+        }
+      }
+    }
+  }
+}
+
+
+.wrapDigitalMyProfile{
+  background: rgba(12, 12, 14, 0.3);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  animation: background 1s;
+  transition: all 1s;
+  .myProfile {
+    display: block;
+    background-color: $WHITE;
+    width: 600px;
+    height: 400px;
+    position: fixed;
+    z-index: 2;
+    left: 35%;
+    top: 30%;
+    img {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      cursor: pointer;
+    }
+    @include flex-row(start);
+    &__left {
+      background-color: $BLACK;
+      width: 170px;
+      height: 100%;
+      @include flex-col(center, center);
+      .profileAvatar {
+        width: 80px;
+        height: 80px;
+        background-color: $WHITE;
+        margin-bottom: 20px;
+        @include flex(center,center);
+        &__firstLetter{
+          @include text(20px, 400, $GOLD);
+          font-family: Inter;
+          line-height: 20px;
+        }
+      }
+      .profileName {
+        width: 120px;
+        height: 30px;
+        background-color: $WHITE;
+        @include flex(center,center);
+        &__fullName{
+          @include text(19px, 400, $BLACK);
+          line-height: 19px;
+          font-family: Inter;
+        }
+      }
+    }
+    &__right {
+      padding: 40px 25px 40px 20px;
+      position: relative;
+      .profileStats{
+        margin-bottom: 20px;
+        list-style: none;
+        overflow:visible;
+        @include flex-row(space-between,center);
+        width:237px;
+        &__elements{
+          @include flex-col(center,center);
+          .elementTitle{
+            @include text(20px, 400, $BLACK);
+            font-family: Inter;
+            line-height: 20px;
+            letter-spacing: 0.4px;
+            margin-bottom: 10px;
+          }
+          .elementStatNumber{
+            margin-top: 10px;
+            @include text(10px, 400, $BLACK);
+            font-family: Inter;
+            line-height: 20px;
+            letter-spacing: 0.2px;
+          }
+        }
+      }
+      .cardNumber{
+        @include text(20px, 400, $BLACK);
+        font-family: Inter;
+        line-height:20px;
+        @include flex(start,center);
+        &__id{
+          @include text(20px, 400, $GOLD);
+          font-family: Inter;
+          line-height:20px;@include flex(center);
+        }
+        &__copyId{
+          background-color: $WHITE;
+          border: 0px;
+          cursor: pointer;
+        }
+      }
+      
+      h2 {
+        @include text(40px, 400, $BLACK);
+        font-family: Forum;
+        letter-spacing: 0.8px;
+        margin-bottom: 30px;
+      }
+      .rentedBook{
+        @include text(25px, 400, $BLACK);
+        font-family: Inter;
+        margin-bottom: 30px;
+      }
+      .rentedBooks {
+        overflow-y: scroll;
+        height: 65px;
+        margin-bottom: 20px;
+        list-style: circle;
+        &__book{
+          padding: 0px;
+          margin: 0px 0px 0px 20px;
+          list-style: disc;
+          margin-bottom: 10px;
+          @include text(19px, 400, $BLACK);
+          line-height: 20px;
+          letter-spacing: 2px;
+          font-family: Inter;
+        }
+      }
+    }
+  }
+}
+
+@keyframes background {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}

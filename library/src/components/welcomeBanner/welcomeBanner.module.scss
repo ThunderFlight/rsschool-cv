@@ -1,0 +1,44 @@
+@import "../../scss/main.scss";
+.welcomeBanner {
+  margin-bottom: 20px;
+  background: linear-gradient(
+      180deg,
+      #0c0c0e 0%,
+      #0c0c0e 0.01%,
+      rgba(18, 18, 21, 0.1) 100%
+    ),
+    url(../../images/welcomeLibrary.jpg), lightgray 50%;
+  background-size: cover;
+
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  height: 600px;
+  width: 100%;
+  position: relative;
+  @include flex(center, center);
+}
+.welcomeBannerWrapper {
+  width: 1440px;
+
+  &__blockTitle {
+    position: absolute;
+    bottom: 160px;
+    width: 600px;
+    height: 220px;
+    background-color: $LIGHTBLACK;
+    padding: 35px 40px;
+    @include flex(center, center);
+
+    & p {
+      color: $WHITE;
+      text-align: center;
+      font-family: "Forum", cursive;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 50px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+  }
+}

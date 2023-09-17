@@ -1,0 +1,154 @@
+@import "../../scss/main.scss";
+
+.header {
+  width: 100%;
+  padding: 20px;
+  height: 90px;
+  background-color: $LIGHTBLACK;
+  @include flex(center, center);
+}
+.headerWrapper {
+  width: 1440px;
+  @include flex-row(space-between);
+  &__headerTitle {
+    color: $WHITE;
+    font-family: "Forum", cursive;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0.6px;
+  }
+  
+  &__avatar {
+    width: 28px;
+    height: 28px;
+    background-color: $WHITE;
+    color: $GOLD;
+    @include flex(center, center);
+    border-radius: 100%;
+    cursor: pointer;
+    margin-right: 40px;
+    z-index: 3;
+    @include media($SCREEN_DESKTOP) {
+      margin: 0px;
+    }
+    
+    // &__avtarTitle{
+    //   display: none;
+    // }
+  }
+  &__nav {
+    @include flex-row(center, center);
+    position: relative;
+
+    img {
+      cursor: pointer;
+      z-index: 3;
+    }
+    .burgerImg {
+      width: 35px;
+    }
+    .noAvatar {
+      margin-right: 40px;
+      @include media($SCREEN_DESKTOP) {
+        margin: 0px;
+      }
+    }
+    .closeList{
+      display: none;
+    }
+    .list {
+      @include flex-col(center,center);
+      z-index: 2;
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background-color: $BLACK;
+      padding: 100px 90px 100px 90px;
+      @include media($SCREEN_DESKTOP) {
+        display: block;
+        list-style: none;
+        @include flex-row(center);
+
+        position: sticky;
+        background-color: $LIGHTBLACK;
+        padding: 0px;
+        top:0px;
+        right: 0px;
+      }
+      li {
+        text-align: center;
+        width: 150px;
+        @include media($SCREEN_DESKTOP) {
+          width: auto;
+        }
+      }
+      li a:hover {
+        color: $GOLD;
+      }
+      li a {
+        @include text(20px, 400, $WHITE);
+        line-height: 50px;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s ease-in-out;
+        
+      }
+      @include media($SCREEN_DESKTOP) {
+      li {
+        margin-right: 30px;
+        position: relative;
+      }
+      li:nth-child(5) {
+        margin-right: 40px;
+      }
+      & li::after {
+        content: "";
+        background-color: $GOLD;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        left: 0px;
+        @include size(6px, true);
+        transform: translateX(-50%);
+        @include transition(left, opacity);
+      }
+      
+      & li:hover::after {
+        left: 50%;
+        opacity: 1;
+      }
+    }
+    }
+    .burgerMenuTrue {
+      display: block;
+    }
+    .burgerMenuFalse {
+      display: none;
+    }
+    .burgerList {
+      position: absolute;
+      z-index: 2;
+      right: -20px;
+      top: -20px;
+      list-style: none;
+      background-color: $BLACK;
+      padding: 100px 20px 100px 20px;
+      width: 330px;
+      @include flex-col(center, center);
+      & li {
+        margin-bottom: 30px;
+      }
+      & li:last-child {
+        margin-bottom: 0px;
+      }
+      & li a {
+        @include text(20px, 400, $WHITE);
+        line-height: 50px;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+      }
+    }
+  }
+}

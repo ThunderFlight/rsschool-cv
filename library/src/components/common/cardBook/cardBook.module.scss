@@ -1,0 +1,126 @@
+@import "../../../scss/main.scss";
+
+.cover {
+    animation: hideShow 2s;
+    transition: all 3s;
+    border: 1px solid $BLACK;
+    padding: 15px 20px 15px 20px;
+    width: 550px;
+    min-height: 555px;
+    position: relative;
+    margin-bottom: 40px;
+    &__from {
+      @include text(20px, 400, $BLACK);
+      font-family: Forum;
+      letter-spacing: 2px;
+      line-height: 40px;
+      height: 38px;
+    }
+    &__lineGold {
+      border: 1px solid $GOLD;
+      background-color: $GOLD;
+      width: 59px;
+      margin-bottom: 20px;
+    }
+
+    &__name {
+      font-family: Inter;
+    }
+    &__author {
+      font-family: Inter;
+      margin-bottom: 20px;
+    }
+    &__description {
+      max-width: 355px;
+      font-family: Inter;
+      @include text(15px, 400, $BLACK);
+      line-height: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    &__image {
+      position: absolute;
+      right: -40px;
+      bottom: -1px;
+    }
+  }
+  .nameAndAuthor {
+    @include text(15px, 700, $BLACK);
+
+    line-height: 40px;
+    letter-spacing: 2px;
+  }
+
+.coverHide{
+  animation: hide 1s;
+  transition: all 3s;
+    border: 1px solid $BLACK;
+    padding: 15px 20px 15px 20px;
+    width: 550px;
+    min-height: 555px;
+    position: relative;
+    margin-bottom: 40px;
+    &__from {
+      @include text(20px, 400, $BLACK);
+      font-family: Forum;
+      letter-spacing: 2px;
+      line-height: 40px;
+      height: 38px;
+    }
+    &__lineGold {
+      border: 1px solid $GOLD;
+      background-color: $GOLD;
+      width: 59px;
+      margin-bottom: 20px;
+    }
+
+    &__name {
+      text-transform: uppercase;
+      font-family: Inter;
+    }
+    &__author {
+      text-transform: capitalize;
+      font-family: Inter;
+      margin-bottom: 20px;
+    }
+    &__description {
+      text-transform: capitalize;
+      max-width: 355px;
+      font-family: Inter;
+      @include text(15px, 400, $BLACK);
+      line-height: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    &__image {
+      position: absolute;
+      right: -40px;
+      bottom: -1px;
+    }
+    .nameAndAuthor {
+    @include text(15px, 700, $BLACK);
+
+    line-height: 40px;
+    letter-spacing: 2px;
+  }
+}
+  
+@keyframes hide {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0.1;
+  }
+}
+@keyframes hideShow {
+  
+  0%{
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
