@@ -16,7 +16,7 @@ const registerSchema = yup.object().shape({
   firstName: yup.string().required("firstName is required").matches(/[A-z]+/, 'FirstName can containt only letters'),
   email: yup.string().required("email is required").matches(/[A-z,0-9]+@[a-z]+.[a-z]+/, 'Email can containt only numbers or letters @ domain'),
   password: yup.string().required("password is required").min(8, 'Password is too short - should be 8 chars.')
-  .matches(/(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8}/, 'Password must have Minimum one LowerCase, one UpperCase letter and one number.'),
+  .matches(/(?=.*[a-z])(?=.*[A-Z]).{8}/, 'Password must have Minimum one LowerCase, one UpperCase letter and one number.'),
 });
 
 
@@ -69,7 +69,7 @@ const inputPropsList = [
     type: "text",
     label: "Password",
     name: "password",
-    pattern: "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8}",
+    pattern: "(?=.*[a-z])(?=.*[A-Z]).{8}",
   },
 ];
   const { createUser } = useAppContext();
