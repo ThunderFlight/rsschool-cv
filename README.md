@@ -1,1 +1,1 @@
-[html](https://thunderflight.github.io/rsschool-cv/cv)
+[html](https://thunderflight.github.io/rsschool-cv/index.html)
