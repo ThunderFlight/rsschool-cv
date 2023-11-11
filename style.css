@@ -1,0 +1,254 @@
+/* BLACK #0B0C10
+GRAY #1F2833
+LIGHTGRAY #C5C6C7
+CYAN #66FCF1
+BLACKCYAN #45A29E */
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #0b0c10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  margin-bottom: 100px;
+  background-color: #0b0c10;
+  position: fixed;
+  width: 100%;
+  bottom: 790px;
+}
+nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+main {
+  margin-top: 100px;
+  width: 1400px;
+}
+.navigation {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.navigation li {
+  margin-left: 30px;
+  cursor: pointer;
+}
+.navigation li a {
+  color: #c5c6c7;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: color 0.5s;
+}
+.navigation li a:hover {
+  color: #66fcf1;
+}
+body {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.nameAvatar {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.nameAvatar img {
+  border-radius: 100%;
+  width: 234px;
+  height: 234px;
+  margin-bottom: 20px;
+}
+.nameAvatar h2 {
+  color: #c5c6c7;
+  margin-bottom: 20px;
+}
+.contact {
+  width: 125px;
+  height: 30px;
+  background-color: #66fcf1;
+  color: #1f2833;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 1s;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.contact:hover {
+  background-color: #45a29e;
+  color: #0b0c10;
+}
+.download {
+  border: 1px solid #c5c6c7;
+  cursor: not-allowed;
+  border-radius: 5px;
+  background-color: #0b0c10;
+  width: 125px;
+  height: 30px;
+  color: #c5c6c7;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 1s;
+}
+.download:hover {
+  background-color: #1f2833;
+}
+.takeInformation {
+  width: 290px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.mySkills {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #66fcf1;
+  padding: 50px 30px 50px 30px;
+  border-radius: 10px;
+}
+.mySkills {
+  color: #1f2833;
+  margin-bottom: 50px;
+}
+.mySkills h2 {
+  margin-bottom: 50px;
+  padding-left: 125px;
+}
+.listOfSkills {
+  display: flex;
+  justify-content: row;
+}
+.listOfSkills ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+.listOfSkills li {
+  color: #1f2833;
+  font-weight: bolder;
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+.wrapperLangSkills {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.languages {
+  display: flex;
+  flex-direction: row;
+}
+.languages ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+.languages li {
+  color: #1f2833;
+  font-weight: bolder;
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+.myWorks {
+  padding-left: 160px;
+}
+.myWorksTitle {
+  color: #c5c6c7;
+  margin-bottom: 30px;
+}
+.drumWork {
+  padding-left: 200px;
+  position: relative;
+  max-width: 800px;
+  margin-bottom: 30px;
+}
+.drumWork img {
+  max-width: 800px;
+  border-radius: 10px;
+}
+
+.aboutDrumWork p {
+  color: #66fcf1;
+}
+.aboutDrumWork h2 {
+  color: #c5c6c7;
+}
+.aboutDrumWork {
+  margin-bottom: 30px;
+}
+.myCode {
+  margin-left: 200px;
+}
+.myCode h2 {
+  color: #c5c6c7;
+  margin-bottom: 30px;
+}
+.exampleOFCode {
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #1f2833;
+  max-width: 740px;
+}
+.myCode code {
+  color: #c5c6c7;
+}
+footer {
+  width: 1400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #0b0c10;
+}
+footer p {
+  color: #c5c6c7;
+}
+footer a {
+  color: #c5c6c7;
+  padding-right: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 1s;
+}
+footer a:hover {
+  color: #66fcf1;
+}
+.rsLogo svg {
+  width: 50px;
+}
+.rsLogo svg path {
+  fill: #c5c6c7;
+  transition: fill 1s;
+}
+.rsLogo svg path:hover {
+  fill: #66fcf1;
+}
+.footerNav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+.footerNav ul li {
+  margin-right: 10px;
+}
+.aboutMe {
+  margin-bottom: 20px;
+}
+.aboutMe p {
+  color: #c5c6c7;
+}
+a {
+  transition: all 1s;
+}
