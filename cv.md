@@ -12,9 +12,9 @@ discord:peng_gentleman
 
 I want to repeat what I know and maybe learn something new
 
-## Programm Langueage what i know
+## What i know
 
-React HTML/CSS,SCSS
+HTML/CSS,SCSS
 
 ## My code
 
